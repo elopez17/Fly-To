@@ -8,9 +8,19 @@ Background and Overview:
 
 MVPs
 
+INPUT
+ Budget(Required for user) Starting point default to SFO
+Starting point (Required for user) and Date range
+Filters - Region, Weather(Forcast based)
+Filter - Language
+
+OUTPUT(UI)
+Price, Location - On Map / Dates - On Click
+Weather w/ Animation on Pin
+Dark Mode
+
 Technologies
 
--- Matt
 
 
 KEE STUFF
