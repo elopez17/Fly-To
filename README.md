@@ -5,16 +5,32 @@ Description: budget oriented, flight search engine
 Background and Overview:
 -- kee background and overview
 
+My background and overview contents.
+
+We will have a lot of backgrounds to add . 
+
+Need to explire APIs
+
+----------------
+
 
 MVPs
 
-Technologies
+INPUT
+ Budget(Required for user) Starting point default to SFO
+Starting point (Required for user) and Date range
+Filters - Region, Weather(Forcast based)
+Filter - Language
 
--- Matt
+OUTPUT(UI)
+Price, Location - On Map / Dates - On Click
+Weather w/ Animation on Pin
+Dark Mode
+
+Technologies & Technical Challenges
 
 
-KEE STUFF
-KEE STUFF
+
 
 
 
