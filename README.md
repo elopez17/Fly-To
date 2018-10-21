@@ -8,7 +8,6 @@ Background and Overview:
 
 MVPs
 
-
 INPUT
  Budget(Required for user) Starting point default to SFO
 Starting point (Required for user) and Date range
@@ -20,9 +19,8 @@ Price, Location - On Map / Dates - On Click
 Weather w/ Animation on Pin
 Dark Mode
 
- eric test merge conflict
+Technologies
 
--- Matt
 
 
 KEE STUFF
