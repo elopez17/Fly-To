@@ -5,14 +5,20 @@ Description: budget oriented, flight search engine
 Background and Overview:
 -- kee background and overview
 
+My background and overview contents.
+
+We will have a lot of backgrounds to add . 
+
+Need to explire APIs
+
+----------------
+
 
 MVPs
 
 -- Matt
 
 
-KEE STUFF
-KEE STUFF
 
 
 
