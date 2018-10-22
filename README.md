@@ -13,19 +13,20 @@ Need to explire APIs
 
 ----------------
 
+Functionality and MVP
 
-MVPs
+✅ Documents have a page that includes an input form to specify a budget.
 
-INPUT
- Budget(Required for user) Starting point default to SFO
-Starting point (Required for user) and Date range
-Filters - Region, Weather(Forcast based)
-Filter - Language
+✅ Documents also support filters for date range, region, weather, and location.
 
-OUTPUT(UI)
-Price, Location - On Map / Dates - On Click
-Weather w/ Animation on Pin
-Dark Mode
+✅ Documents include a page where a map is rendered with a layer of location pins showing price at the location based on user input, and an animation of weather expected on day of arrival. 
+
+✅ Documents have more information stored at each pin that includes Dates, and forcast. 
+
+✅ UI will also include a Dark Mode.
+
+----------------
+
 
 Technologies
 
@@ -33,11 +34,11 @@ Technologies
 
 
 
-
+# Delete 👇 before turning in
 
 Required sections:
 Background and Overview
-Functionality and MVP
+Functionality and MVP -- Matt
 Technologies and Technical Challenges
 Things Accomplished Over the Weekend
 Group Members and Work Breakdown
