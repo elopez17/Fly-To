@@ -25,6 +25,7 @@ Price, Location - On Map / Dates - On Click
 Weather w/ Animation on Pin
 Dark Mode
 
+
 Technologies
 skyscanner API - https://skyscanner.github.io
 
@@ -49,6 +50,18 @@ Google Maps API
 Google Static Map API
 Google Geometry API
 Express Framework
+
+
+## Technologies & Technical Challenges
+---
+Fly To is a web app designed to help users make great decisions about their next flight plans.
+This web app is built with:
+* Backend  - MongoDB/Express
+* Frontend  - React/Node.js
+
+#### Technical Challenges:
+Interacting with multiple APIs and handling these interactions in an efficient manner.
+Filtering through different types of data. Sorting results in many forms.
 
 
 
