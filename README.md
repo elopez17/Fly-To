@@ -1,17 +1,15 @@
 # Fly-To
 
-Description: budget oriented, flight search engine
+Description: 
+
+budget oriented, flight search engine
+
 
 Background and Overview:
--- kee background and overview
 
-My background and overview contents.
+Have you ever wondered how much of the world you can explore based on the dollar amount you have in your pocket?
 
-We will have a lot of backgrounds to add . 
-
-Need to explire APIs
-
-----------------
+Fly-To will give you a list of countries that fits your budget. Users will be able to view result by region and airline carrier based on user input price.
 
 
 MVPs
@@ -26,6 +24,32 @@ OUTPUT(UI)
 Price, Location - On Map / Dates - On Click
 Weather w/ Animation on Pin
 Dark Mode
+
+
+Technologies
+skyscanner API - https://skyscanner.github.io
+
+API Collection:
+    Flights Browse Prices
+        Browse Quotes
+        Browse Routes
+        Browse Dates
+        Browse Grid
+    Localisation
+        Locales
+        Currencies
+        Markets
+    Places
+        Geo
+        Autosuggest(list of places)
+        Autosuggest(placeid)
+
+React.js
+Node.js
+Google Maps API
+Google Static Map API
+Google Geometry API
+Express Framework
 
 
 ## Technologies & Technical Challenges
