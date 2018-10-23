@@ -3,8 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import Axios from 'axios';
 import FlightShowContainer from './component/flight/flight_show_container.jsx';
-import MapContainer from './components/map_container';
-// import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
+import SimpleMap from "./components/map/map";
+// import MapContainer from './components/map/map_container';
 
 class App extends Component {
 
@@ -16,8 +16,8 @@ class App extends Component {
 
     return <div>
         test
-        {/* <MapContainer/> */}
-        <FlightShowContainer />
+        <SimpleMap/>
+        {/* <FlightShowContainer /> */}
       </div>;
   };
 };

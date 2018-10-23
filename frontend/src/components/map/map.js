@@ -1,0 +1,68 @@
+// import React, { Component } from 'react';
+// import { Map, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
+import React, { Component } from "react";
+import GoogleMapReact from "google-map-react";
+const googleAPI = require("../../keys").googleAPI;
+
+// class GMap extends Component {
+  
+//   drawLines(){
+
+//   }
+  
+  
+  
+  
+//   render() {
+//     const GoogleMapExample = withGoogleMap(props => (
+//       <GoogleMap
+//         defaultCenter={{ lat: 40.756795, lng: -73.954298 }}
+//         defaultZoom={13}
+//       >
+//       </GoogleMap>
+//     ));
+//     return (
+//       <div>
+//         <Map google={this.props.google} zoom={14}>
+//           <Marker onClick={this.onMarkerClick}
+//             name={'Current location'} />
+//         </Map>
+//       </div>
+//     );
+//   }
+// };
+
+// export default GMap
+
+const AnyReactComponent = ({ text }) => <div>{text}</div>;
+
+class SimpleMap extends Component {
+  static defaultProps = {
+    center: {
+      lat: 59.95,
+      lng: 30.33
+    },
+    zoom: 11
+  };
+
+  render() {
+    return (
+      // Important! Always set the container height explicitly
+      <div style={{ height: '100vh', width: '100%' }}>
+        <GoogleMapReact
+          bootstrapURLKeys={{ key: googleAPI }}
+          defaultCenter={this.props.center}
+          defaultZoom={this.props.zoom}
+        >
+          <AnyReactComponent
+            lat={59.955413}
+            lng={30.337844}
+            text={'Kreyser Avrora'}
+          />
+        </GoogleMapReact>
+      </div>
+    );
+  }
+}
+
+export default SimpleMap;
