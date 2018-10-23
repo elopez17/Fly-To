@@ -27,6 +27,7 @@
 /config/master.key
 
 /config/keys.js
+/frontend/src/keys.js
 
 node_modules/
 bundle.js
