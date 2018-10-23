@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import * as APIUtil from './util/api_util';
+// import * as APIUtil from './util/api_util';
 import configureStore from './store/store';
 import App from './App';
 
