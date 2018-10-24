@@ -9,7 +9,9 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
+    return {
     // getFlight: () => dispatch(getFlight());
+    }
 }
 
 export default connect(null, mapDispatchToProps)(FlightShow);
