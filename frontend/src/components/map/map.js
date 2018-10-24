@@ -4,36 +4,6 @@ import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
 const googleAPI = require("../../keys").googleAPI;
 
-// class GMap extends Component {
-  
-//   drawLines(){
-
-//   }
-  
-  
-  
-  
-//   render() {
-//     const GoogleMapExample = withGoogleMap(props => (
-//       <GoogleMap
-//         defaultCenter={{ lat: 40.756795, lng: -73.954298 }}
-//         defaultZoom={13}
-//       >
-//       </GoogleMap>
-//     ));
-//     return (
-//       <div>
-//         <Map google={this.props.google} zoom={14}>
-//           <Marker onClick={this.onMarkerClick}
-//             name={'Current location'} />
-//         </Map>
-//       </div>
-//     );
-//   }
-// };
-
-// export default GMap
-
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 class SimpleMap extends Component {
