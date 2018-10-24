@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Axios from 'axios';
-import FlightShowContainer from './component/flight/flight_show_container.jsx';
+import FlightShowContainer from './components/flight/flight_show_container.jsx';
 
 class App extends Component {
 
