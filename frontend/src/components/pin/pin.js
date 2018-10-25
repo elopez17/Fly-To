@@ -18,12 +18,12 @@ class Pin extends Component {
       return <div style={pinStyle}>
               <div style={pinStyleContentHover}>
                 {this.props.airportName}
-                <br />
+                <br/>
                 {this.props.doa}
               </div>
               <div style={pinStyleContent}>
                 {this.props.weather}
-                <br />
+                <br/>
                 {this.props.price}
               </div>
               </div>;

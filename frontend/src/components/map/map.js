@@ -19,6 +19,8 @@ class Map extends Component {
     zoom: 15
   };
 
+
+
   render() {
     // const style = this.props.$hover ? pinStyleHover : pinStyle;
     return (
@@ -55,6 +57,7 @@ class Map extends Component {
             weather={"Cold"}
             price={"$846"}
           />
+          
           
         </GoogleMapReact>
       // </div>
