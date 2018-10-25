@@ -3,6 +3,7 @@ import * as APIUtil from '../util/flight_api_util';
 export const RECEIVE_ALL_QUOTES = 'RECEIVE_ALL_QUOTES';
 export const RECEIVE_ALL_GEO = "RECEIVE_ALL_GEO";
 export const RECEIVE_ORIGIN = "RECEIVE_ORIGIN";
+export const RECEIVE_RESULTS = "RECEIVE_RESULTS";
 
 const receiveAllGeo = (resp) => ({
   type: RECEIVE_ALL_GEO,
@@ -20,6 +21,11 @@ export const setOrigin = (origin) => ({
   origin,
 });
 
+// setResults;
+export const setResults = (results) => ({
+  type: RECEIVE_RESULTS,
+  results,
+});
 
 export const fetchAllGeo = () => (dispatch) => {
   return APIUtil.fetchAllGeo().then(res => dispatch(receiveAllGeo(res)));
