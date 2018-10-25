@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Axios from 'axios';
 import FlightShowContainer from './component/flight/flight_show_container.jsx';
-import SimpleMap from "./components/map/map";
+import Map from "./components/map/map";
 // import MapContainer from './components/map/map_container';
 
 class App extends Component {
@@ -14,11 +14,10 @@ class App extends Component {
     //https://www.html5rocks.com/en/tutorials/cors/
       // const url = "http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/US/usd/en-US/us/us/anytime/anytime?apikey=prtl6749387986743898559646983194";
 
-    return <div>
-        test
-        <SimpleMap/>
-        {/* <FlightShowContainer /> */}
-      </div>;
+    return <div style={{ height: "100vh", width: "100%" }}>
+            <Map>
+            </Map>
+          </div>;
   };
 };
     
