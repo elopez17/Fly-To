@@ -2,12 +2,47 @@
 // import { Map, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
+// import { GoogleApiWrapper, InfoWindow, Map, Marker } from "google-map-react";
 import Pin from '../pin/pin'
 // import { pinStyle, pinStyleHover } from '../pin/pin_style'
-
-
-
 const googleAPI = require("../../keys").googleAPI;
+
+const testObj = {
+  1: {
+    lat: 59.955413,
+    lng: 30.337844,
+    airportName: "HELLO FLYTO!!!",
+    doa: "10/31/18",
+    weather: "Cold",
+    price: "$422"
+  },
+  2: {
+    lat: 37.7749,
+    lng: -122.4194,
+    airportName: "SFO",
+    doa: "10/31/18",
+    weather: "Warm",
+    price: "$999"
+  },
+  3: {
+    lat: 40.7128,
+    lng: -74.006,
+    airportName: "NYC",
+    doa: "10/31/18",
+    weather: "Cold",
+    price: "$846"
+  },
+  4: {
+    lat: 47.6062,
+    lng: -122.3321,
+    airportName: "SEA",
+    doa: "10/31/18",
+    weather: "Rain",
+    price: "$300"
+  }
+};
+
+
 
 
 class Map extends Component {
@@ -19,6 +54,23 @@ class Map extends Component {
     zoom: 15
   };
 
+  createPins() {
+    let pins = Object.values(testObj);
+    return (
+      pins.map((pin, i) => (
+        <Pin
+          key={i}
+          lat={pin.lat}
+          lng={pin.lng}
+          airportName={pin.airportName}
+          doa={pin.doa}
+          weather={pin.weather}
+          price={pin.price}/>
+      ))
+    )
+  }
+
+
   render() {
     // const style = this.props.$hover ? pinStyleHover : pinStyle;
     return (
@@ -29,33 +81,9 @@ class Map extends Component {
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
         >
-          <Pin
-            lat={59.955413}
-            lng={30.337844}
-            airportName={'HELLO FLYTO!!!'}
-            doa={"10/31/18"}
-            weather={'Cold'}
-            price={"$422"}
-            />
 
-          <Pin
-            lat={37.7749}
-            lng={-122.4194}
-            airportName={"SFO"}
-            doa={"10/31/18"}
-            weather={"Warm"}
-            price={"$999"}
-          />
+          {this.createPins()}
 
-          <Pin
-            lat={40.7128}
-            lng={-74.0060}
-            airportName={"NYC"}
-            doa={"10/31/18"}
-            weather={"Cold"}
-            price={"$846"}
-          />
-          
         </GoogleMapReact>
       // </div>
     );

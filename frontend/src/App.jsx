@@ -3,8 +3,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Axios from 'axios';
-import FlightShowContainer from './component/flight/flight_show_container.jsx';
-import Map from "./components/map/map";
+import GMap from "./components/map/map";
 // import MapContainer from './components/map/map_container';
 import FlightShowContainer from './components/flight/flight_show_container.jsx';
 // import { fetchAllData } from './actions/flights_actions';
@@ -35,8 +34,8 @@ class App extends Component {
           Click to expand sidebar
         </button>
         <br /> <br />
-            <Map>
-            </Map>
+            <GMap>
+            </GMap>
       </div>
     )
   };

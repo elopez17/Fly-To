@@ -14,16 +14,17 @@ class Pin extends Component {
   static defaultProps = {};
 
   render() {
+    // debugger
     if (this.props.$hover) {
       return <div style={pinStyle}>
               <div style={pinStyleContentHover}>
                 {this.props.airportName}
-                <br />
+                <br/>
                 {this.props.doa}
               </div>
               <div style={pinStyleContent}>
                 {this.props.weather}
-                <br />
+                <br/>
                 {this.props.price}
               </div>
               </div>;
