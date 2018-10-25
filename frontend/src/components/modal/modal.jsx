@@ -1,28 +1,29 @@
 import React from 'react';
 import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
+import SidebarContainer from '../sidebar/sidebar_container';
 
 function Modal({ modal, closeModal }) {
     if (!modal) {
         return null;
     }
-
     let component;
     switch  (modal) {
+        
         case 'sidebar':
-            component = <div></div> 
+            component = <div><SidebarContainer /></div> 
             break;
             
         default:
             return null;
     };
+
+    return <div className="modal-background" onClick={closeModal}>
+        <div className="modal-child" onClick={e => e.stopPropagation()}>
+          {component}
+        </div>
+      </div>;
 }
-
-// let backGroudModal = "";
-let childModalType = "";
-
-// (modal === 'explore') ? backGroundModal = 'modal-clear-background' : backGroundModal = 'modal-background';
-(modal === "explore") ? (childModalType = "modal-child-profile-dropdown") : (childModalType = "modal-child");
 
 
 const mapStateToProps = (state) => {
@@ -34,8 +35,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
     return {
         closeModal: () => {
-            (dispatch(closeModal()))
-            dispatch(clearErrors())
+            dispatch(closeModal())
         }
     }
 }
