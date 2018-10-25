@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import FlightShow from './flight_show.jsx';
+import {fetchAllData} from '../../actions/flights_actions';
 
 const mapStateToProps = state => {
     return ({
@@ -9,7 +10,9 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-    // getFlight: () => dispatch(getFlight());
+    return {
+        fetchAllData: (filters) => dispatch(fetchAllData(filters))
+    }
 }
 
 export default connect(null, mapDispatchToProps)(FlightShow);

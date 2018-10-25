@@ -1,24 +1,52 @@
+
+
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Axios from 'axios';
 import FlightShowContainer from './component/flight/flight_show_container.jsx';
 import Map from "./components/map/map";
 // import MapContainer from './components/map/map_container';
+import FlightShowContainer from './components/flight/flight_show_container.jsx';
+// import { fetchAllData } from './actions/flights_actions';
+import { connect } from 'react-redux';
+import Modal from './components/modal/modal';
+import {openModal} from './actions/modal_actions';
+
+
+// const mdp = (dispatch) => ({
+//   getAllData: (filters) => dispatch(fetchAllData(filters)),
+// });
 
 class App extends Component {
+  // constructor(props) {
+  //   super(props);
+  // }
 
-
+  // componentDidMount() {
+  //   this.props.getAllData();
+  // }
+//  {country} /{currency} /{locale} /{origin} /{destination} /{outboundPartialDate} /{inboundPartialDate}
   render() {
+    return (
+      <div style={{ height: "100vh", width: "100%" }}>
+        <Modal />
 
-    //https://www.html5rocks.com/en/tutorials/cors/
-      // const url = "http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/US/usd/en-US/us/us/anytime/anytime?apikey=prtl6749387986743898559646983194";
-
-    return <div style={{ height: "100vh", width: "100%" }}>
+        <button onClick={() => this.props.openModal("sidebar")} className="sidebar">
+          Click to expand sidebar
+        </button>
+        <br /> <br />
             <Map>
             </Map>
-          </div>;
+      </div>
+    )
   };
 };
-    
-export default App;
+
+const mapDispatchToProps = dispatch => {
+  return {
+    openModal: (modal) => dispatch(openModal(modal))
+  }
+}
+
+
+export default connect(null, mapDispatchToProps)(App);
