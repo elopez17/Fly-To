@@ -2,6 +2,10 @@
 
 import React, { Component } from 'react';
 import './App.css';
+import Axios from 'axios';
+import FlightShowContainer from './component/flight/flight_show_container.jsx';
+import Map from "./components/map/map";
+// import MapContainer from './components/map/map_container';
 import FlightShowContainer from './components/flight/flight_show_container.jsx';
 // import { fetchAllData } from './actions/flights_actions';
 import { connect } from 'react-redux';
@@ -23,21 +27,20 @@ class App extends Component {
   // }
 //  {country} /{currency} /{locale} /{origin} /{destination} /{outboundPartialDate} /{inboundPartialDate}
   render() {
-
     return (
-      <div>
+      <div style={{ height: "100vh", width: "100%" }}>
         <Modal />
 
         <button onClick={() => this.props.openModal("sidebar")} className="sidebar">
           Click to expand sidebar
         </button>
         <br /> <br />
+            <Map>
+            </Map>
       </div>
     )
   };
 };
-    
-{/* <FlightShowContainer /> */}
 
 const mapDispatchToProps = dispatch => {
   return {

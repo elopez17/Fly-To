@@ -5,7 +5,7 @@ import Axios from "axios";
 class FlightShow extends React.Component {
 
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             origin: "",
@@ -15,16 +15,16 @@ class FlightShow extends React.Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
-    componentDidMount(){
-         
+    componentDidMount() {
+
     }
 
-    handleChange(e){
+    handleChange(e) {
         //handles change for fields in the form.
-        this.setState({[e.target.name]: e.target.value})
+        this.setState({ [e.target.name]: e.target.value })
     }
 
-    handleSubmit(e){
+    handleSubmit(e) {
         e.preventDefault();
         // need to refactor to call thunk actions
 
@@ -52,7 +52,7 @@ class FlightShow extends React.Component {
                 <br />
                 <br />
                 <button>Budget me!</button>
-            </form> 
+            </form>
 
         )
     }
