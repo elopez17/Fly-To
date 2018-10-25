@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-export const getFlights = () => {
-  axios.get('/all/flights')
-    .then(flights => )
-};
+export const fetchAllData = (filters) => (
+  axios.get('/all/flights', {
+    params: filters
+  })
+);
