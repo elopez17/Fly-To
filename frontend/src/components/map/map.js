@@ -2,6 +2,7 @@
 // import { Map, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
+// import { GoogleApiWrapper, InfoWindow, Map, Marker } from "google-map-react";
 import Pin from '../pin/pin'
 // import { pinStyle, pinStyleHover } from '../pin/pin_style'
 const googleAPI = require("../../keys").googleAPI;
@@ -42,6 +43,8 @@ const testObj = {
 };
 
 
+
+
 class Map extends Component {
   static defaultProps = {
     center: {
@@ -55,7 +58,7 @@ class Map extends Component {
     let pins = Object.values(testObj);
     return (
       pins.map((pin, i) => (
-        <Pin 
+        <Pin
           key={i}
           lat={pin.lat}
           lng={pin.lng}
@@ -80,7 +83,7 @@ class Map extends Component {
         >
 
           {this.createPins()}
-          
+
         </GoogleMapReact>
       // </div>
     );
@@ -88,5 +91,3 @@ class Map extends Component {
 }
 
 export default Map;
-
-
