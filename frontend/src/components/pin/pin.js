@@ -14,6 +14,7 @@ class Pin extends Component {
   static defaultProps = {};
 
   render() {
+    // debugger
     if (this.props.$hover) {
       return <div style={pinStyle}>
               <div style={pinStyleContentHover}>
