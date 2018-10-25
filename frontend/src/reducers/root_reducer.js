@@ -8,5 +8,7 @@ const rootReducer = combineReducers({
   ui,
   errors
 });
+// keep track of place ids
+
 
 export default rootReducer;

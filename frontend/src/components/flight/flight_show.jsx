@@ -1,10 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Axios from "axios";
-import Request from "superagent";
-
 
 class FlightShow extends React.Component {
+
 
     constructor(props){
         super(props);
@@ -52,8 +51,9 @@ class FlightShow extends React.Component {
             <br />
             <button>Budget me!</button>
           </form>;   
-    }
 
+
+    }
 }
 
 export default FlightShow;
