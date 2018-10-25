@@ -1,12 +1,12 @@
-// import some action from actions/somefile
+import { IS_LOADING, IS_DONE_LOADING } from '../actions/loading_actions';
 
 const loadingReducer = (state = false, action) => {
   Object.freeze(state);
   switch (action.type) {
-    case false:
-      
-      break;
-  
+    case IS_LOADING:
+      return action.payload;
+    case IS_DONE_LOADING:
+      return action.payload;
     default:
       return state;
   }
