@@ -79,8 +79,10 @@ class App extends Component {
   getResults(budget){
     let results = {};
     for (let i = 0; i < this.props.quotes.length; i++) {
-      if (this.props.quotes[i].MinPrice <= budget) {
-        results[this.props.quotes[i].QuoteId] = this.props.quotes[i];
+      if (this.props.quotes[i].OutboundLeg.OriginId === this.props.origin.PlaceId &&
+        this.props.quotes[i].MinPrice <= budget) {
+      
+       results[this.props.quotes[i].QuoteId] = this.props.quotes[i];
         for (let j = 0; j < this.props.places.length; j++) {
           if (this.props.places[j].PlaceId === this.props.quotes[i].OutboundLeg.DestinationId) {
             let airport = this.props.places[j].IataCode;
@@ -91,6 +93,7 @@ class App extends Component {
             break;
           }
         }
+        
       }
     }
     this.props.setResults(results);
