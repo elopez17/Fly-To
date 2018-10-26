@@ -52,14 +52,15 @@ class Map extends Component {
       lat: 37.77,
       lng: -122.41
     },
-    zoom: 15
+    zoom: 0
   };
 // -122.534722, 48.794444
   getLatLng(location) {
+    let parsedLocations = []
     location.split(', ').map(str => {
-      parseFloat(str)
+      parsedLocations.push(parseFloat(str))
     });
-    return location;
+    return parsedLocations;
   }
 
   getDoa(date) {
@@ -67,12 +68,13 @@ class Map extends Component {
   }
 
   parseProps() {
+
     let locations = Object.values(this.props.locations);
     let pins = {};
     let i = 1;
     locations.map(location => {
       let lL = this.getLatLng(location.Location)
-      let date = this.getDoa(location.DepartureDate)
+      let date = this.getDoa(location.OutboundLeg.DepartureDate);
       pins[i] = {
         lat: lL[1],
         lng: lL[0],
@@ -121,8 +123,7 @@ class Map extends Component {
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
         >
-
-          {this.createPins}
+          {(this.props.locations) ? this.createPins() : null}
 
         </GoogleMapReact>
       // </div>
