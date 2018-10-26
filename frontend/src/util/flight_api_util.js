@@ -1,10 +1,11 @@
 import axios from 'axios';
 
-export const fetchAllData = (filters) => {
+export const fetchAllQuotes = (filters) => (
+  axios.get('/all/flights', {
+    params: filters
+  })
+);
 
-  return (
-    axios.get('/all/flights', {
-      params: filters
-    })
-  )
-};
+export const fetchAllGeo = () => (
+  axios.get('/all/geo')
+);

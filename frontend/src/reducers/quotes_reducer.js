@@ -1,10 +1,10 @@
-import { RECEIVE_ALL_DATA } from "../actions/flights_actions";
+import { RECEIVE_ALL_QUOTES } from "../actions/flights_actions";
 
 const quotesReducer = (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
-    case RECEIVE_ALL_DATA:
-      return action.payload;
+    case RECEIVE_ALL_QUOTES:
+      return action.payload.Quotes;
     default:
       return state;
   }
