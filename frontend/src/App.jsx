@@ -1,8 +1,16 @@
+
+
 import React, { Component } from 'react';
 import './App.css';
+import Axios from 'axios';
+import GMap from "./components/map/map";
+// import MapContainer from './components/map/map_container';
 import FlightShowContainer from './components/flight/flight_show_container.jsx';
 import { fetchAllQuotes, fetchAllGeo, setOrigin, setResults } from './actions/flights_actions';
 import { connect } from 'react-redux';
+import Modal from './components/modal/modal';
+import {openModal} from './actions/modal_actions';
+
 
 const msp = (state) => ({
   quotes: state.flights.quotes,
@@ -16,6 +24,7 @@ const mdp = (dispatch) => ({
   getAllGeo: () => dispatch(fetchAllGeo()),
   setOrigin: (origin) => dispatch(setOrigin(origin)),
   setResults: (results) => dispatch(setResults(results)),
+  openModal: (modal) => dispatch(openModal(modal)),
 });
 
 class App extends Component {
@@ -88,12 +97,20 @@ class App extends Component {
     return results;
   }
   
+
   render() {
     return (
-      <div>
-        <FlightShowContainer />
+      <div style={{ height: "100vh", width: "100%" }}>
+        <Modal />
+
+        <button onClick={() => this.props.openModal("sidebar")} className="sidebar">
+          Click to expand sidebar
+        </button>
+        <br /> <br />
+            <GMap>
+            </GMap>
       </div>
-    );
+    )
   };
 };
     

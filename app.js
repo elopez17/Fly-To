@@ -21,8 +21,8 @@ app.use(bodyParser.json());
 
 // app.use(passport.initialize());
 
-
-
+app.use(express.static(__dirname + "/public/assets"));
+// app.use('/public', express.static('public'));
 app.use("/all", all);
 
 

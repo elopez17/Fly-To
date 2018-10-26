@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import FlightShow from './flight_show.jsx';
+import {fetchAllQuotes} from '../../actions/flights_actions';
 
 const mapStateToProps = state => {
     return ({
@@ -10,7 +11,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-    // getFlight: () => dispatch(getFlight());
+        fetchAllQuotes: (filters) => dispatch(fetchAllQuotes(filters))
     }
 }
 
