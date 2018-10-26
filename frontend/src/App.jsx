@@ -3,8 +3,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import Axios from 'axios';
-import GMap from "./components/map/map";
-// import MapContainer from './components/map/map_container';
+// import GMap from "./components/map/map";
+import MapContainer from './components/map/map_container';
 import FlightShowContainer from './components/flight/flight_show_container.jsx';
 import { fetchAllQuotes, fetchAllGeo, setOrigin, setResults } from './actions/flights_actions';
 import { connect } from 'react-redux';
@@ -107,8 +107,8 @@ class App extends Component {
           Click to expand sidebar
         </button>
         <br /> <br />
-            <GMap>
-            </GMap>
+            <MapContainer>
+            </MapContainer>
       </div>
     )
   };
