@@ -43,6 +43,10 @@ const testObj = {
 
 
 class Map extends Component {
+  constructor(props) {
+    super(props)
+  }
+
   static defaultProps = {
     center: {
       lat: 37.77,
@@ -50,26 +54,60 @@ class Map extends Component {
     },
     zoom: 15
   };
+// -122.534722, 48.794444
+  getLatLng(location) {
+    location.split(', ').map(str => {
+      parseFloat(str)
+    });
+    return location;
+  }
 
-  parseState(locations) {
-    // debugger;
+  getDoa(date) {
+    return date.slice(0,10);
+  }
+
+  parseProps() {
+    let locations = Object.values(this.props.locations);
+    let pins = {};
+    let i = 1;
+    locations.map(location => {
+      let lL = this.getLatLng(location.Location)
+      let date = this.getDoa(location.DepartureDate)
+      pins[i] = {
+        lat: lL[1],
+        lng: lL[0],
+        airportName: location.Airport,
+        doa: date,
+        weather: "NAY!",
+        price: `$${location.MinPrice}`
+      };
+      i++;
+    });
+    return pins;
+  }
+
+  componentDidMount() {
+    // setTimeout(() => {
+    // }, 10000).then(() => {
+    //   this.createPins();
+    // })
+    // ;
   }
 
   createPins() {
-    let locations = Object.values(this.props.locations);
-    let pins = this.parseState(locations);
-    // return (
-    //   pins.map((pin, i) => (
-    //     <Pin
-    //       key={i}
-    //       lat={pin.lat}
-    //       lng={pin.lng}
-    //       airportName={pin.airportName}
-    //       doa={pin.doa}
-    //       weather={pin.weather}
-    //       price={pin.price}/>
-    //   ))
-    // )
+    let pins = Object.values(this.parseProps(this.props.locations));
+    return (
+      pins.map((pin, i) => (
+        <Pin
+          key={i}
+          lat={pin.lat}
+          lng={pin.lng}
+          airportName={pin.airportName}
+          doa={pin.doa}
+          weather={pin.weather}
+          price={pin.price}/>
+      ))
+    )
   }
 
 
@@ -84,7 +122,7 @@ class Map extends Component {
           defaultZoom={this.props.zoom}
         >
 
-          {this.createPins()}
+          {this.createPins}
 
         </GoogleMapReact>
       // </div>
