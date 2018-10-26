@@ -26,8 +26,8 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-/config/keys.js
-/frontend/src/keys.js
+/config/keys_dev.js
+/frontend/src/config/keys_dev.js
 
 node_modules/
 bundle.js

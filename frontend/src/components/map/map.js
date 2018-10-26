@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
 // import { GoogleApiWrapper, InfoWindow, Map, Marker } from "google-map-react";
 import Pin from '../pin/pin';
-const googleAPI = require("../../keys").googleAPI;
+const googleAPI = require("../../config/keys").googleAPI;
 
 const testObj = {
   1: {
