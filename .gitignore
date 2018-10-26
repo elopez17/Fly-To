@@ -28,6 +28,7 @@
 
 /config/keys_dev.js
 /frontend/src/config/keys_dev.js
+/seed/api-seeder.js
 
 node_modules/
 bundle.js

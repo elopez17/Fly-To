@@ -1,4 +1,5 @@
 // import Axios from "axios";
+const Api = require('../../models/api');
 const Axios = require("axios");
 const cors = require("cors");
 const express = require("express");
