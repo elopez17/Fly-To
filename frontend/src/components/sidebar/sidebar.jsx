@@ -3,10 +3,30 @@ import FlightShowContainer from '../flight/flight_show_container';
 
 class Sidebar extends React.Component{
 
+    constructor(props){
+        super(props)
+        this.state = {
+            hidden: true
+        }
+    }
+
+    componentDidMount(){
+
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                this.setState({hidden: false})
+
+            })
+
+        })
+
+    }
+
     render(){
+        let hiddenClass = this.state.hidden ? "dontShow" : "show"
 
         return(
-            <div className="sidebar">
+            <div className={"sidebar " +  hiddenClass}>
                 <FlightShowContainer />
             </div>
 

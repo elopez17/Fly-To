@@ -4,21 +4,25 @@
   bottom: 0;
   right: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.5);
+  /* background: rgba(0, 0, 0, 0.5); */
+  background: rgba(0, 0, 0, 0);
   z-index: 10;
 }
 
 .modal-child {
   position: absolute;
-  top: 50vh; /* position */
-  left: 50vw ;
+  top: 0;
+  left: 0;
+  height: 100%;
+  /* top: 50vh; position */
+  /* left: 50vw ; */
   /* transform: translate(160%, 55%); */
   /* transform: translate(50%, 55%); */
-  width: 360px;
-  height: 420px;
+  width: 280px;
+  /* height: 420px; */
 
-  margin-top: -200px;
-  margin-left: -180px;
+  /* margin-top: -200px;
+  margin-left: -180px; */
   width: 360px;
 
   z-index: 3;
@@ -27,8 +31,180 @@
   /* border: 1px solid #000; */
 }
 
-
-
-.sidebar {
+/* .sidebar {
   color: red;
+} */
+
+/* .btn-wrapper,.btn-primary{
+  width:200px;
+  display:inline-block;
+  overflow: auto;
+  white-space: nowrap;
+  margin:0px auto;
+  border:1px red solid;
+
+} */
+
+.modal-content .flight-search-input-form{
+  display: grid;
+  height: 500px;
 }
+
+.sidebar-flight-show.modal.left.fade{
+  height: 1500px;
+  padding-top: 18px;
+ 
+}
+
+/* .modal-content.flight-search-input-form{ */
+/* .sidebar-flight-show{ */
+/* .modal-dialog.left{ */
+.modal-content{
+  display: grid;
+  grid-template-rows: 1fr
+}
+
+.icon.icon-menu{
+  margin-left: 30px;
+  margin-top: 30px;
+  font-size: 40px;
+  background: transparent;
+  border: none;
+}
+
+
+/* .icon.icon-menu:hover .fal,
+ .icon.icon-menu .fas.fa-bars{
+  cursor: pointer;
+  display: none;
+}
+
+.icon.icon-menu:hover .fas.fa-bars{
+  cursor: pointer;
+  display: inline;
+}
+ */
+
+
+
+.sidebar .sidebar-flight-show{
+  font-family: "Graphik Webfont",-apple-system,BlinkMacSystemFont,"Roboto","Droid Sans","Segoe UI","Helvetica",Arial,sans-serif;
+  padding: 1px 18px 18px 18px;
+  /* width: 360px; */
+  /* height: 395px; */
+  background: white;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  height: 100%;
+
+
+}
+
+
+.sidebar .sidebar-flight-show{
+  height: 100%;
+  height: 420px;
+  background-color: white;
+
+  overflow-y: auto;
+}
+	
+	.modal.left .modal-body,
+  .modal.right .modal-body 
+  {
+		padding: 15px 15px 80px;
+  }
+  
+
+.sidebar{
+  transition: opacity 0.5s linear, transform 0.5s linear;
+}
+
+.dontShow{
+  transform: translate(-100vw);
+  opacity: 0;
+}
+
+.show{
+  /* transform: translateX(0); */
+  transform: translate(0,0);
+  opacity: 1;
+
+}
+  
+.sidebar .sidebar-flight-show{
+  left: 0;
+  height: 100%;
+}
+
+
+
+.sidebar-container.btn-wrapper{
+    width: auto;
+    /* display: inline-block; */
+    overflow: visible;
+    /* white-space: nowrap; */
+    /* margin: 0px auto; */
+    /* border: 1px red solid; */
+    height: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+
+/*******************************
+* MODAL AS LEFT/RIGHT SIDEBAR
+* Add "left" or "right" in modal parent div, after class="modal".
+* Get free snippets on bootpen.com
+*******************************/
+/* .sidebar .sidebar-flight-show{ */
+/* .modal.left .modal-dialog{
+  position: fixed;
+  margin: auto;
+  width: 320px;
+  height: 100%;
+  -webkit-transform: translate3d(0%, 0, 0);
+      -ms-transform: translate3d(0%, 0, 0);
+        -o-transform: translate3d(0%, 0, 0);
+          transform: translate3d(0%, 0, 0);
+} */
+
+/* .sidebar .flight-search-input-form{ */
+/* .modal.left .modal-content{
+  height: 100%;
+  overflow-y: auto;
+} */
+
+
+
+/*Left*/
+/* .modal.left.fad .modal-dialog{
+
+  left: -320px;
+  -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+      -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+        -o-transition: opacity 0.3s linear, left 0.3s ease-out;
+          transition: opacity 0.3s linear, left 0.3s ease-out; */
+/* } */
+
+/* .modal-dialog > .modal-content{ */
+/* .sidebar .sidebar-flight-show.fade{ */
+/* .modal.left.fade{
+  left: 0;
+  top: 0;
+} */
+      
+
+/* ----- MODAL STYLE ----- */
+/* .modal-content {
+  border-radius: 0;
+  border: none;
+}
+
+.modal-header {
+  border-bottom-color: #EEEEEE;
+  background-color: #FAFAFA;
+} */

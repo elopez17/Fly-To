@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
 import Pin from '../pin/pin'
 // import { pinStyle, pinStyleHover } from '../pin/pin_style'
+import { openModal } from '../../actions/modal_actions';
 
 
 
@@ -19,16 +20,23 @@ class Map extends Component {
     zoom: 15
   };
 
+
+
+
   render() {
     // const style = this.props.$hover ? pinStyleHover : pinStyle;
     return (
       // Important! Always set the container height explicitly - set in app.jsx
       // <div style={{ height: "100vh", width: "100%" }}>
+        
+
         <GoogleMapReact
           bootstrapURLKeys={{ key: googleAPI }}
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
+
         >
+
           <Pin
             lat={59.955413}
             lng={30.337844}
@@ -56,8 +64,9 @@ class Map extends Component {
             price={"$846"}
           />
           
+         
+
         </GoogleMapReact>
-      // </div>
     );
   }
 }

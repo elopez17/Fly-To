@@ -9,7 +9,8 @@ class FlightShow extends React.Component {
         super(props);
         this.state = {
             origin: "",
-            amount: null
+            amount: null,
+            region: ""
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -41,20 +42,28 @@ class FlightShow extends React.Component {
 
     render() {
 
-        return (
-            <form className="input-form" onSubmit={this.handleSubmit}>
-                From: <br />
+        return <div className="sidebar-flight-show modal left fade">
+            <div className="modal-dialog left">
+              <form className="modal-content flight-search-input-form" onSubmit={this.handleSubmit}>
+                <div>
+                    From:
+                </div>
                 <input name="origin" onChange={this.handleChange} type="text" />
-                <br />
-                <br />
-                Budget: <br />
+                <div> 
+                    Budget:
+                </div>
                 <input name="amount" onChange={this.handleChange} type="text" />
-                <br />
-                <br />
-                <button>Budget me!</button>
-            </form>
+                <div>
+                    Region:
+                </div>
+                <input name="region" onChange={this.handleChange} type="text" />
 
-        )
+                <button>
+                    Budget me!
+                </button>
+              </form>
+            </div>
+          </div>;
     }
 }
 
