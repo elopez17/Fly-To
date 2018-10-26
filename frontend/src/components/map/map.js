@@ -51,20 +51,25 @@ class Map extends Component {
     zoom: 15
   };
 
+  parseState(locations) {
+    // debugger;
+  }
+
   createPins() {
-    let pins = Object.values(testObj);
-    return (
-      pins.map((pin, i) => (
-        <Pin
-          key={i}
-          lat={pin.lat}
-          lng={pin.lng}
-          airportName={pin.airportName}
-          doa={pin.doa}
-          weather={pin.weather}
-          price={pin.price}/>
-      ))
-    )
+    let locations = Object.values(this.props.locations);
+    let pins = this.parseState(locations);
+    // return (
+    //   pins.map((pin, i) => (
+    //     <Pin
+    //       key={i}
+    //       lat={pin.lat}
+    //       lng={pin.lng}
+    //       airportName={pin.airportName}
+    //       doa={pin.doa}
+    //       weather={pin.weather}
+    //       price={pin.price}/>
+    //   ))
+    // )
   }
 
 
