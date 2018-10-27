@@ -2,27 +2,43 @@ import React from 'react';
 import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import SidebarContainer from '../sidebar/sidebar_container';
+import SplashContainer from '../splash/splash_container';
 
 function Modal({ modal, closeModal }) {
     if (!modal) {
         return null;
     }
+
     let component;
     switch  (modal) {
         
         case 'sidebar':
-            component = <div><SidebarContainer /></div> 
+            component = <div className="sidebar-container"><SidebarContainer /></div> 
+            break;
+        case 'splash':
+            component = <div className="splash-container"><SplashContainer /></div>
             break;
             
         default:
             return null;
     };
 
-    return <div className="modal-background" onClick={closeModal}>
-        <div className="modal-child" onClick={e => e.stopPropagation()}>
-          {component}
+    let componentToRender;
+    if (modal === 'sidebar'){
+        componentToRender = (<div className="modal-background clear-background" onClick={closeModal}>
+            {component}
+        </div>)
+    } else {
+        componentToRender = (<div className="modal-background black-background" onClick={closeModal}>
+            {component}
+        </div>)
+    }
+
+    return (
+        <div>
+            {componentToRender}
         </div>
-      </div>;
+      )
 }
 
 

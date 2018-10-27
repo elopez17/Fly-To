@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
-import Pin from '../pin/pin';
+// import { GoogleApiWrapper, InfoWindow, Map, Marker } from "google-map-react";
+import Pin from '../pin/pin'
+// import { pinStyle, pinStyleHover } from '../pin/pin_style'
+import { openModal } from '../../actions/modal_actions';
 import { getChims } from '../../util/chim_util';
+const googleAPI = require("../../keys").googleAPI;
+
+
+
 let gPI;
-
-
-
-
 
 class Map extends Component {
   constructor(props) {
@@ -20,6 +23,7 @@ class Map extends Component {
     },
     zoom: 0
   };
+
 
   getLatLng(location) {
     let parsedLocations = [];
@@ -60,6 +64,7 @@ class Map extends Component {
     });
   }
 
+
   createPins() {
     let pins = Object.values(this.parseProps(this.props.locations));
     return (
@@ -75,6 +80,7 @@ class Map extends Component {
       ))
     )
   }
+
 
 
   render() {
@@ -94,6 +100,7 @@ class Map extends Component {
         <div></div>
       )
     }
+
   }
 }
 
