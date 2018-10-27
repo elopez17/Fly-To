@@ -13,9 +13,9 @@ router.get('/flights', function (req, res) {
     Axios.get(url)
         .then(resp => res.status(201).send(resp.data))
         .catch(err => res.send(err))
-    });
+});
     
-    router.get('/geo', function(req, res){
+router.get('/geo', function(req, res){
     const url = `http://partners.api.skyscanner.net/apiservices/geo/v1.0?apikey=prtl6749387986743898559646983194`;
     Axios.get(url)
     .then(resp => res.status(201).send(resp.data))
