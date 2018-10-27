@@ -9,7 +9,7 @@ router.get("/test", (req, res) => res.json({ msg: "this is the all route" }));
 
 router.get("/chimichanga", (req, res) => {
     Chim.findOne({ name: "google" }).then(resp => {
-        console.log(resp)
+        // console.log(resp)
         return res.status(201).send(resp);
     });
 });
