@@ -27,7 +27,9 @@ class Sidebar extends React.Component{
 
         return(
             <div className={"sidebar " +  hiddenClass}>
+                <div className="modal-child" onClick={e => e.stopPropagation()}>
                 <FlightShowContainer />
+                </div>
             </div>
 
         )

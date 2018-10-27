@@ -1,0 +1,120 @@
+/* .splash-container.{ */
+/* .modal-background.black-background{ */
+.modal-background.black-background{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8);
+  /* background: rgba(0, 0, 0, 0); */
+  z-index: 10;
+}
+
+
+/* .splash-page.splash-middle { */
+.splash-page.splash-middle{
+  position: absolute;
+  /* top: 0; */
+  /* left: 0; */
+  top: 9vh; 
+  left: 10vw ;
+  /* transform: translateX(160%, 55%); 
+  transform: translateY(50%, 55%); */
+  width: 80%;
+  height: 80%;
+  background: white;
+  /* margin-top: -200px;
+  margin-left: -180px; */
+  z-index: 3;
+  /* background: #fff; */
+  border-radius: 200px;
+  /* border: 1px solid #000; */
+  opacity: 0.9;
+}
+
+.splash-page.splash-middle{
+
+    /* background-image: linear-gradient(lightgray,gray, rgb(60, 69, 74)); */
+    background-image: linear-gradient(rgb(77,57,75),gray, rgb(52, 33, 50));
+    padding: 20px;
+    display: grid;
+    /* justify-items: center; */
+
+}
+
+.splash-page-container.splash-page-child{
+    /* opacity: .1; */
+    display: grid;
+    grid-auto-rows: 3fr 1fr 1fr 1fr;
+    /* justify-self: center; */
+    /* justify-self: center; */
+    font-family: "Graphik Webfont",-apple-system,BlinkMacSystemFont,"Roboto","Droid Sans","Segoe UI","Helvetica",Arial,sans-serif;
+    height: 100%;
+    
+    /* setting to middle of it's parent */
+    grid-column: 2;
+    text-align: center;
+    grid-gap: 20px;
+    z-index:-1;
+}
+
+.modal.logo{
+    overflow: auto;
+    height: 100%;
+    /* align-self: center; */
+    justify-self: center;
+    /* display: block; */
+    /* margin-left: auto;
+    margin-right: auto; */
+    border-radius: 140px;
+    margin-top: 20px;
+}
+
+
+.modal.title{
+    align-self: center;
+    font-size: 60px;
+    padding-top: 20px;
+    font-style: italic;
+}
+
+.modal.tagline{
+    justify-self: center;
+    font-size: 20px;
+}
+
+.modal-btn.modal-btn-get-started{
+    justify-self: center;
+    width: 100%;
+    border-radius: 30px;
+    height: 60%;
+    background-color:rgb(60, 69, 74);
+    font-size: 20px;
+    display: grid;
+    color: black;
+    font-weight: 300;
+    
+}
+
+
+
+.modal-btn.modal-btn-get-started:hover{
+    cursor: pointer;
+    background-color:rgb(38, 38, 38);
+    font-weight: 500;
+    color: white;
+}
+
+.splash-page.splash-middle{
+/* .modal-child.splash-page-container.splash-page-child{ */
+    display:grid;
+    justify-self:center;
+
+    grid-template-columns: 33% 40% 30%;
+}
+
+.modal-child.splash-page-container.splash-page-child{
+    z-index: 4;
+    opacity: 1;
+}

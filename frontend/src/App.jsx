@@ -11,6 +11,7 @@ import { fetchAllQuotes, fetchAllGeo, setOrigin, setResults } from './actions/fl
 import { connect } from 'react-redux';
 import Modal from './components/modal/modal';
 import {openModal} from './actions/modal_actions';
+import SplashContainer from './components/splash/splash_container';
 
 
 const msp = (state) => ({
@@ -38,12 +39,13 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.props.getAllGeo().then(() => 
-      this.props.getAllQuotes().then(() => {
-        this.getOrigin("SFO");
-        this.getResults(500);
-      })
-    );
+    this.props.openModal("splash")
+    // this.props.getAllGeo().then(() => 
+    //   this.props.getAllQuotes().then(() => {
+    //     this.getOrigin("SFO");
+    //     this.getResults(500);
+    //   })
+    // );
   }
 //  {country} /{currency} /{locale} /{origin} /{destination} /{outboundPartialDate} /{inboundPartialDate}
 
@@ -102,14 +104,14 @@ class App extends Component {
   }
   
 
+  // <SplashContainer />
   render() {
     return <div style={{ height: "100vh", width: "100%" }}>
         <Modal />
 
-
         <div className="sidebar-container btn-wrapper">
           <button className="icon icon-menu btn btn-primary" onClick={() => this.props.openModal("sidebar")} >
-            <i class="fas fa-bars"></i>
+            <i className="fas fa-bars"></i>
           </button>
          
         </div>
