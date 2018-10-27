@@ -2,13 +2,18 @@
   "name": "fly-to",
   "version": "1.0.0",
   "description": "Description: budget oriented, flight search engine",
+  "engines": {
+    "node": "8.9.0"
+  },
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "frontend-install": "npm install --prefix frontend",
     "frontend": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run frontend\"",
-    "server": "nodemon --inspect app.js"
+    "server": "nodemon --inspect app.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",

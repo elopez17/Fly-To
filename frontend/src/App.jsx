@@ -10,6 +10,7 @@ import { fetchAllQuotes, fetchAllGeo, setOrigin, setResults } from './actions/fl
 import { connect } from 'react-redux';
 import Modal from './components/modal/modal';
 import {openModal} from './actions/modal_actions';
+import SplashContainer from './components/splash/splash_container';
 
 
 const msp = (state) => ({
@@ -37,6 +38,8 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.props.openModal("splash")
+    
     this.props.getAllGeo().then(() => 
       this.props.getAllQuotes().then(() => {
         this.getOrigin("SFO");
@@ -101,20 +104,27 @@ class App extends Component {
   }
   
 
+  // <SplashContainer />
   render() {
-    return (
-      <div style={{ height: "100vh", width: "100%" }}>
+    return <div style={{ height: "100vh", width: "100%" }}>
         <Modal />
 
-        <button onClick={() => this.props.openModal("sidebar")} className="sidebar">
-          Click to expand sidebar
-        </button>
-        <br /> <br />
-            <MapContainer>
-            </MapContainer>
-      </div>
-    )
+
+        <div className="sidebar-container btn-wrapper">
+          <button className="icon icon-menu btn btn-primary" onClick={() => this.props.openModal("sidebar")} >
+            <i className="fas fa-bars"></i>
+          </button>
+         
+        </div>
+          <MapContainer>
+          </MapContainer>
+      </div>;
+
+
   };
 };
-    
+
+{/* <i class="fal fa-bars"></i> */}
+
 export default connect(msp, mdp)(App);
+

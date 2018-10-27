@@ -1,50 +1,19 @@
 import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
 // import { GoogleApiWrapper, InfoWindow, Map, Marker } from "google-map-react";
-import Pin from '../pin/pin';
+import Pin from '../pin/pin'
+// import { pinStyle, pinStyleHover } from '../pin/pin_style'
+import { openModal } from '../../actions/modal_actions';
+import { getChims } from '../../util/chim_util';
 const googleAPI = require("../../keys").googleAPI;
 
-const testObj = {
-  1: {
-    lat: 59.955413,
-    lng: 30.337844,
-    airportName: "HELLO FLYTO!!!",
-    doa: "10/31/18",
-    weather: "Cold",
-    price: "$422"
-  },
-  2: {
-    lat: 37.7749,
-    lng: -122.4194,
-    airportName: "SFO",
-    doa: "10/31/18",
-    weather: "Warm",
-    price: "$999"
-  },
-  3: {
-    lat: 40.7128,
-    lng: -74.006,
-    airportName: "NYC",
-    doa: "10/31/18",
-    weather: "Cold",
-    price: "$846"
-  },
-  4: {
-    lat: 47.6062,
-    lng: -122.3321,
-    airportName: "SEA",
-    doa: "10/31/18",
-    weather: "Rain",
-    price: "$300"
-  }
-};
 
 
-
+let gPI;
 
 class Map extends Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   static defaultProps = {
@@ -54,11 +23,12 @@ class Map extends Component {
     },
     zoom: 0
   };
-// -122.534722, 48.794444
+
+
   getLatLng(location) {
-    let parsedLocations = []
+    let parsedLocations = [];
     location.split(', ').map(str => {
-      parsedLocations.push(parseFloat(str))
+      parsedLocations.push(parseFloat(str));
     });
     return parsedLocations;
   }
@@ -88,13 +58,12 @@ class Map extends Component {
     return pins;
   }
 
-  componentDidMount() {
-    // setTimeout(() => {
-    // }, 10000).then(() => {
-    //   this.createPins();
-    // })
-    // ;
+  componentWillMount() {
+    getChims().then(resp => {
+      gPI = resp.data.key;
+    });
   }
+
 
   createPins() {
     let pins = Object.values(this.parseProps(this.props.locations));
@@ -113,21 +82,25 @@ class Map extends Component {
   }
 
 
-  render() {
-    // const style = this.props.$hover ? pinStyleHover : pinStyle;
-    return (
-      // Important! Always set the container height explicitly - set in app.jsx
-      // <div style={{ height: "100vh", width: "100%" }}>
-        <GoogleMapReact
-          bootstrapURLKeys={{ key: googleAPI }}
-          defaultCenter={this.props.center}
-          defaultZoom={this.props.zoom}
-        >
-          {(this.props.locations) ? this.createPins() : null}
 
-        </GoogleMapReact>
-      // </div>
-    );
+  render() {
+    if (gPI) {
+      return (
+          <GoogleMapReact
+            bootstrapURLKeys={{ key: gPI }}
+            defaultCenter={this.props.center}
+            defaultZoom={this.props.zoom}
+          >
+            {(this.props.locations) ? this.createPins() : null}
+  
+          </GoogleMapReact>
+      );
+    } else {
+      return (
+        <div></div>
+      )
+    }
+
   }
 }
 

@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Map from './map';
+import {openModal} from '../../actions/modal_actions';
+import { getChims } from '../../util/chim_util';
 
 const mapStateToProps = (state) => {
   // debugger
@@ -10,12 +12,12 @@ const mapStateToProps = (state) => {
   };
 };
 
-// const mapDispatchToProps = dispatch => ({
-  
-// });
 
+const mapDispatchToProps = dispatch => {
+    return {
+        openModal: (modal) => dispatch(openModal(modal))
+    }
+}
 
-export default connect(
-  mapStateToProps,
-  null
-)(Map);
+export default connect(mapStateToProps,mapDispatchToProps)(Map);
+
