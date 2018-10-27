@@ -1,11 +1,15 @@
 // import Axios from "axios";
-const Api = require('../../models/api');
+const Chim = require('../../models/chim');
 const Axios = require("axios");
 const cors = require("cors");
 const express = require("express");
 const router = express.Router();
 
 router.get("/test", (req, res) => res.json({ msg: "this is the all route" }));
+
+router.get("/chimichanga", (req, res) => {
+    Chim.findOne({ name: "google" })
+});
 
 router.get('/flights', function (req, res) {
     // console.log(req.query)

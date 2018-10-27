@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const ApiSchema = new Schema({
+const ChimSchema = new Schema({
   name: {
     type: String
   },
@@ -10,4 +10,4 @@ const ApiSchema = new Schema({
   }
 });
 
-module.exports = Api = mongoose.model('api_keys', ApiSchema);
+module.exports = Chim = mongoose.model('chim_changas', ChimSchema);
