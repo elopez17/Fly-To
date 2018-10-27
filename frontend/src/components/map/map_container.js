@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Map from './map';
+import { getChims } from '../../util/chim_util';
 
 const mapStateToProps = (state) => {
   // debugger
