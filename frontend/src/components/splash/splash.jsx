@@ -9,8 +9,9 @@ class Splash extends React.Component{
 
     componentDidMount(){
         // this.props.getAllGeo().then(() => console.log("FINISH CALLING GET ALL GEO"));
-        this.props.getAllQuotes().then(()=> console.log("FINISH CALLING GET ALL QUOTES"))
-            .then(() => this.props.getAllGeo());
+        // this.props.getAllQuotes().then(() => console.log("Finish calling GET GEO"));
+        // this.props.getAllQuotes().then(()=> console.log("FINISH CALLING GET ALL QUOTES"))
+        //     .then(() => this.props.getAllGeo());
 
         this.props.openModal("splash");
 

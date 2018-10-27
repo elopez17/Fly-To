@@ -3,9 +3,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import Axios from 'axios';
-import Map from "./components/map/map";
-import GMap from "./components/map/map";
-// import MapContainer from './components/map/map_container';
+// import GMap from "./components/map/map";
+import MapContainer from './components/map/map_container';
 import FlightShowContainer from './components/flight/flight_show_container.jsx';
 import { fetchAllQuotes, fetchAllGeo, setOrigin, setResults } from './actions/flights_actions';
 import { connect } from 'react-redux';
@@ -40,12 +39,13 @@ class App extends Component {
 
   componentDidMount() {
     this.props.openModal("splash")
-    // this.props.getAllGeo().then(() => 
-    //   this.props.getAllQuotes().then(() => {
-    //     this.getOrigin("SFO");
-    //     this.getResults(500);
-    //   })
-    // );
+    
+    this.props.getAllGeo().then(() => 
+      this.props.getAllQuotes().then(() => {
+        this.getOrigin("SFO");
+        this.getResults(500);
+      })
+    );
   }
 //  {country} /{currency} /{locale} /{origin} /{destination} /{outboundPartialDate} /{inboundPartialDate}
 
@@ -109,15 +109,18 @@ class App extends Component {
     return <div style={{ height: "100vh", width: "100%" }}>
         <Modal />
 
+
         <div className="sidebar-container btn-wrapper">
           <button className="icon icon-menu btn btn-primary" onClick={() => this.props.openModal("sidebar")} >
             <i className="fas fa-bars"></i>
           </button>
          
         </div>
-        <GMap>
-        </GMap>
+          <MapContainer>
+          </MapContainer>
       </div>;
+
+
   };
 };
 

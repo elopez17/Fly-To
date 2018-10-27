@@ -1,19 +1,28 @@
 const express = require('express');
 const app = express();
-// const dbURI = require("./config/keys").mongoURI;
-// const mongoose = require('mongoose');
-
+const dbURI = require("./config/keys").mongoURI;
+const mongoose = require('mongoose');
+const path = require("path");
 const port = process.env.PORT || 5000;
 const all = require('./routes/api/all');
 const bodyParser = require('body-parser');
 // const passport = require('passport');
 // require('./config/passport')(passport);
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("frontend/build"));
+  app.get("/", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+  });
+}
 
-// mongoose
-//   .connect(dbURI, {useNewUrlParser: true})
-//   .then(() => console.log("Connected to MongoDB successfully"))
-//   .catch(err => console.log(err));
+
+mongoose
+  .connect(dbURI, {useNewUrlParser: true})
+  .then(() => {})
+  // .then(() => console.log("Connected to MongoDB successfully"))
+  .catch(err => {});
+  // .catch(err => console.log(err));
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -27,4 +36,5 @@ app.use("/all", all);
 
 
 
-app.listen(port, () => console.log("ready"));
+app.listen(port, () => {});
+// app.listen(port, () => console.log("ready"));

@@ -46,16 +46,16 @@ class FlightShow extends React.Component {
 
         // this.setState({})
 
-        // this.props.getAllGeo().then(() =>
-        //     this.props.getAllQuotes().then(() => {
-        //         this.getOrigin("SFO");
-        //         this.getResults(parseInt(this.state.amount))
+        this.props.getAllGeo().then(() =>
+            this.props.getAllQuotes().then(() => {
+                this.getOrigin("SFO");
+                this.getResults(parseInt(this.state.amount))
 
-        //     })
-        // );
+            })
+        );
 
-        this.getOrigin("SFO");
-        this.getResults(parseInt(this.state.amount))
+        // this.getOrigin("SFO");
+        // this.getResults(parseInt(this.state.amount))
     }
 
     getOrigin(airport) {
