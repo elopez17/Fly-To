@@ -6,15 +6,20 @@ import OriginPin from '../pin/origin_pin';
 import { openModal } from '../../actions/modal_actions';
 import { getChims } from '../../util/chim_util';
 
+import ReactLoading from "react-loading";
 
 
-
-
+const googleAPI = require("../../keys").googleAPI;
 let gPI;
 
 class Map extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      loading: true
+    }
+
     getChims().then(resp => {
       gPI = resp.data.key;
     });
@@ -65,6 +70,17 @@ class Map extends Component {
     return pins;
   }
 
+
+  componentDidMount(){
+    this.setState({loading: false})
+  }
+
+  componentWillMount() {
+    getChims().then(resp => {
+      gPI = resp.data.key;
+    });
+  }
+
   createMapOptions(maps) {
     
     return {
@@ -84,7 +100,6 @@ class Map extends Component {
 
   createPins() {
     let pins = Object.values(this.parseProps(this.props.locations));
-      // debugger
       return (
         pins.map((pin, i) => {
               return (
@@ -104,6 +119,8 @@ class Map extends Component {
 
 
   render() {
+
+
     const triangleCoords = [
       { lat: 25.774, lng: -80.190 },
       { lat: 18.466, lng: -66.118 },
@@ -111,8 +128,8 @@ class Map extends Component {
       { lat: 25.774, lng: -80.190 }
     ];
 
+
     if (gPI) {
-      // debugger
       return (
           <GoogleMapReact
             bootstrapURLKeys={{ key: gPI }}
@@ -140,13 +157,19 @@ class Map extends Component {
           </GoogleMapReact>
       );
     } else {
+
+
+
       setTimeout(() => {
         this.forceUpdate();
       }, 2000);
       return (
-        <div>Waiting for Map to load...</div>
+        <div className="loading map-loading" color="#fff">
+          <ReactLoading type="bubbles" color="rgb(95, 188, 205)" />
+        </div>
         
       )
+
     }
 
   }

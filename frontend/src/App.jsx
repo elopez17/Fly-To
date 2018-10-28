@@ -39,7 +39,7 @@ class App extends Component {
 
   componentDidMount() {
     this.props.openModal("splash")
-    
+
     // this.props.getAllGeo().then(() => 
     //   this.props.getAllQuotes().then(() => {
     //     this.getOrigin("SFO");
@@ -108,8 +108,6 @@ class App extends Component {
   render() {
     return <div style={{ height: "100vh", width: "100%" }}>
         <Modal />
-
-
         <div className="sidebar-container btn-wrapper">
           <button className="icon icon-menu btn btn-primary" onClick={() => this.props.openModal("sidebar")} >
             <i className="fas fa-bars"></i>
