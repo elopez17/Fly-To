@@ -37,6 +37,6 @@ export const fetchAllQuotes = (filters) => (dispatch) => {
     origin: 'us', destination: 'us',
     outbound: 'anytime', inbound: 'anytime'}, filters);
 //  {country} /{currency} /{locale} /{origin} /{destination} /{outboundPartialDate} /{inboundPartialDate}
-
+    console.log(filters);
   return APIUtil.fetchAllQuotes(filters).then(data => dispatch(receiveAllQuotes(data)));
 };

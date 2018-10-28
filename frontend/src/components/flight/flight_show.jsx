@@ -76,6 +76,8 @@ class FlightShow extends React.Component {
                 }
             }
         }
+        console.log('404: GEO NOT FOUND');
+        return "";
     }
 
     getPlace(airport) {
@@ -86,9 +88,12 @@ class FlightShow extends React.Component {
                 return place;
             }
         }
+        console.log('404: PLACE NOT FOUND');
+        return {};
     }
 
     getResults(budget) {
+        console.log(budget);
         let results = {};
         for (let i = 0; i < this.props.quotes.length; i++) {
             if (this.props.quotes[i].OutboundLeg.OriginId === this.props.origin.PlaceId &&
@@ -103,6 +108,10 @@ class FlightShow extends React.Component {
                         results[this.props.quotes[i].QuoteId]['Location'] = geo;
                         results[this.props.quotes[i].QuoteId]['Airport'] = airport;
                         break;
+                    } else if (j === this.props.places.length - 1) {
+                        console.log('404: LOCATION/AIRPORT NOT FOUND FOR RESULT');
+                        results[this.props.quotes[i].QuoteId]['Location'] = "";
+                        results[this.props.quotes[i].QuoteId]['Airport'] = "";
                     }
                 }
 
