@@ -46,13 +46,13 @@ class FlightShow extends React.Component {
 
         // this.setState({})
 
-        this.props.getAllGeo().then(() =>
+        // this.props.getAllGeo().then(() =>
             this.props.getAllQuotes({destination: this.state.country}).then(() => {
                 this.getOrigin(this.state.origin.toUpperCase());
                 this.getResults(parseInt(this.state.amount))
 
-            })
-        );
+            });
+        // );
 
         // this.getOrigin("SFO");
         // this.getResults(parseInt(this.state.amount))
@@ -65,6 +65,7 @@ class FlightShow extends React.Component {
     }
 
     getGeo(place) {
+        return this.props.geo[place.IataCode].Location;
         for (let i = 0; i < this.props.geo.Continents.length; i++) {
             for (let j = 0; j < this.props.geo.Continents[i].Countries.length; j++) {
                 if (this.props.geo.Continents[i].Countries[j].Name === place.CountryName) {

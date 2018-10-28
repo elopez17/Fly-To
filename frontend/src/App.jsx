@@ -39,7 +39,7 @@ class App extends Component {
 
   componentDidMount() {
     this.props.openModal("splash")
-    
+    this.props.getAllGeo().then(() => console.log('all geos loaded'));
     // this.props.getAllGeo().then(() => 
     //   this.props.getAllQuotes().then(() => {
     //     this.getOrigin("SFO");
