@@ -5,15 +5,20 @@ import Pin from '../pin/pin'
 // import { pinStyle, pinStyleHover } from '../pin/pin_style'
 import { openModal } from '../../actions/modal_actions';
 import { getChims } from '../../util/chim_util';
+import ReactLoading from "react-loading";
+
+
+
+
 const googleAPI = require("../../keys").googleAPI;
-
-
-
 let gPI;
 
 class Map extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      loading: true
+    }
   }
 
   static defaultProps = {
@@ -58,6 +63,10 @@ class Map extends Component {
     return pins;
   }
 
+  componentDidMount(){
+    this.setState({loading: false})
+  }
+
   componentWillMount() {
     getChims().then(resp => {
       gPI = resp.data.key;
@@ -84,6 +93,16 @@ class Map extends Component {
 
 
   render() {
+    // debugger
+    // let loadingComponent;
+    // if (this.state.loading) {
+    //   // loadingComponent = <div>LOADING</div>
+    //   loadingComponent = <ReactLoading type="spin" />
+
+    // } else {
+    //   loadingComponent = <div>NOT LOADING</div>
+    // }
+
     if (gPI) {
       return (
           <GoogleMapReact
@@ -96,9 +115,9 @@ class Map extends Component {
           </GoogleMapReact>
       );
     } else {
-      return (
-        <div></div>
-      )
+      return <div className="loading map-loading" color="#fff">
+          <ReactLoading type="balls" color="rgb(95, 188, 205)" />           
+        </div>;
     }
 
   }

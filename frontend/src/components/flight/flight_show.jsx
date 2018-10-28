@@ -1,6 +1,7 @@
 import React from "react";
 // import { Link } from "react-router-dom";
 import Axios from "axios";
+import ReactLoading from "react-loading";
 
 class FlightShow extends React.Component {
 
@@ -10,7 +11,8 @@ class FlightShow extends React.Component {
         this.state = {
             origin: "",
             amount: null,
-            region: ""
+            region: "",
+            loading: false
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -22,8 +24,22 @@ class FlightShow extends React.Component {
     }
 
     componentDidMount() {
+        this.setState({loading: false})
 
     }
+
+    // componentDidUpdate(prevProps){
+    //     // https://stackoverflow.com/questions/40359800/how-to-toggle-boolean-state-of-react-component
+    //     // https:reactjs.org/docs/state-and-lifecycle.html#state-updates-may-be-asynchronous
+    //     debugger
+    //     if (prevProps.loading != this.state.loading){
+    //         this.setState( prevState => {
+    //             return{
+    //                 loading: !prevState.loading
+    //             }
+    //         })
+    //     }
+    // }
 
     handleChange(e) {
         //handles change for fields in the form.
@@ -45,12 +61,17 @@ class FlightShow extends React.Component {
         // this.props.fetchAllData(this.state);
 
         // this.setState({})
+        this.setState({loading: true})
+        // this.props.openModal("loading");
 
         this.props.getAllGeo().then(() =>
             this.props.getAllQuotes().then(() => {
                 this.getOrigin("SFO");
                 this.getResults(parseInt(this.state.amount))
-
+            }).then(() => {
+                this.setState({loading: false})
+            // }).then(()=>{
+            //     this.props.closeModal();
             })
         );
 
@@ -59,7 +80,13 @@ class FlightShow extends React.Component {
     }
 
     getOrigin(airport) {
-        let place = this.getPlace(airport);
+        debugger
+        // let place = {
+        //     value: this.getPlace(airport),
+        //     writable: true
+        // }
+        let place = this.getPlace(airport)
+            
         let geo = this.getGeo(place);
         this.props.setOrigin(Object.assign(place, { Location: geo }));
     }
@@ -116,32 +143,47 @@ class FlightShow extends React.Component {
 
     render() {
 
+        let loadingComponent;
+        if (this.state.loading){
+            debugger
+            loadingComponent = <ReactLoading className="flight-search result-search" type="balls" color="rgb(95, 188, 205)" />;
+            // this.props.openModal("loading");
+        } else {
+            loadingComponent = <div className="invisible-div"></div>
+            // this.props.closeModal();
+        }
 
-        return <div className="sidebar-flight-show modal left fade">
-            <div className="modal-dialog left">
-              <form className="modal-content flight-search-input-form" onSubmit={this.handleSubmit}>
-                <div className= "form-logo"> 
-                        <img className="modal logo" src="https://preview.ibb.co/jOHzTA/Screen-Shot-2018-10-26-at-1-48-18-PM.png" alt="Screen-Shot-2018-10-26-at-1-48-18-PM" border="0" />
+        return( 
+            <div>
+                {loadingComponent}
+                <div className="sidebar-flight-show modal left fade">
+                    <div className="modal-dialog left">
+                    <form className="modal-content flight-search-input-form" onSubmit={this.handleSubmit}>
+                        <div className="form-logo">
+                        {/* <img className="modal logo" src="https://preview.ibb.co/jOHzTA/Screen-Shot-2018-10-26-at-1-48-18-PM.png" alt="Screen-Shot-2018-10-26-at-1-48-18-PM" border="0" /> */}
+                        <img className="modal logo" src="https://image.ibb.co/hOajVq/Logo3.png" alt="Fly-To" border="0" />
+                        </div>
+                        <div className="form-origin-title">From:</div>
+                        <div className="select-wrapper">
+                            <select className="origin" onChange={this.handleChange} type="text" >
+                                <option className="select-values" value="sfo">San Francisco Airport SFO</option>
+                                <option className="select-values" value="sjc">San Jose Airport SJC</option>
+                                <option className="select-values" value="oak">Oakland Airport OAK</option>
+                                <option className="select-values" value="hwd">Hayward Executive Airport HWD</option>
+                                <option className="select-values" value="jfk">John F. Kennedy Airport JFK</option>
+                            </select>
+                        </div>
+                        <div className="form-budget-title">Budget:</div>
+                        <input className="form-budget-input" name="amount" onChange={this.handleChange} type="text" />
+                        <div className="form-region-title">Region:</div>
+                        <input className="form-region-input" name="region" onChange={this.handleChange} type="text" />
+ 
+                        <button className="form-button button-input">GO</button>
+                    </form>
+                    </div>
                 </div>
-                <div className="form-origin-title">
-                    From:
-                </div>
-                <input className="origin" onChange={this.handleChange} type="text" />
-                <div className="form-budget-title"> 
-                    Budget:
-                </div>
-                <input className="form-budget-input" name="amount" onChange={this.handleChange} type="text" />
-                <div className="form-region-title">
-                    Region:
-                </div>
-                <input className="form-region-input" name="region" onChange={this.handleChange} type="text" />
-
-                <button className="form-button button-input">
-                    GO
-                </button>
-              </form>
             </div>
-          </div>;
+        )
     }
 }
 
