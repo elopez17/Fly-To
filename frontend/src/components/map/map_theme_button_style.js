@@ -1,10 +1,10 @@
 export const buttonStyle = {
-  background: "none",
+  background: "rgb(95, 188, 205)",
   border: "1px solid white",
   color: "white",
-  marginBottom: "5px",
+  marginBottom: "4px",
   marginLeft: "80px",
-  padding: "0px",
+  paddingBottom: "2px",
   position: "absolute",
   cursor: "pointer",
   userSelect: "none",
@@ -15,5 +15,6 @@ export const buttonStyle = {
   overflow: "hidden",
   bottom: "0px",
   left: "0px",
-  zIndex: 3000
+  focus: "none",
+  zIndex: 3
 };

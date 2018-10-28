@@ -7,5 +7,5 @@ export const fetchAllQuotes = (filters) => (
 );
 
 export const fetchAllGeo = () => (
-  axios.get('/all/geo')
+  axios.get('/all/locations')
 );

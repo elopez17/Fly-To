@@ -1,16 +1,17 @@
 import React from "react";
 // import { Link } from "react-router-dom";
 import Axios from "axios";
+import ReactLoading from "react-loading";
+import $ from "jquery";
+
 
 class FlightShow extends React.Component {
-
-
     constructor(props) {
         super(props);
         this.state = {
-            origin: "",
+            origin: "sfo",
             amount: null,
-            country: ""
+            country: "anywhere"
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -22,6 +23,8 @@ class FlightShow extends React.Component {
     }
 
     componentDidMount() {
+        this.setState({loading: false})
+        $("#submit-button").css({ background: "gray" });
 
     }
 
@@ -35,49 +38,31 @@ class FlightShow extends React.Component {
         // need to refactor to call thunk actions
 
         let origin = this.state.origin;
-        // const url = `http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/US/usd/en-US/us/us/anytime/anytime?apikey=prtl6749387986743898559646983194`;
-        // const url = `http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/US/usd/en-US/${origin}/us/anytime/anytime?apikey=prtl6749387986743898559646983194`;
-        // debugger
-        // Request.get(url)
-        //   .then(data => console.log(data))
-        //   .then(console.log("Calling api."))
-        //   .catch(err => console.log(err));
-        // this.props.fetchAllData(this.state);
-
-        // this.setState({})
-
-        this.props.getAllGeo().then(() =>
-            this.props.getAllQuotes({destination: this.state.country}).then(() => {
-                this.getOrigin(this.state.origin.toUpperCase());
-                this.getResults(parseInt(this.state.amount))
-
-            })
-        );
-
-        // this.getOrigin("SFO");
-        // this.getResults(parseInt(this.state.amount))
+        
+        if (window.loading === true){
+            return null
+        }
+        
+        window.loading = true;
+        
+        this.props.getAllQuotes({destination: this.state.country}).then(() => {
+            this.getOrigin(this.state.origin.toUpperCase());
+            this.getResults(parseInt(this.state.amount))
+        }).then(() => {
+            window.loading = false;
+            this.props.closeModal();
+        });
+        
     }
 
     getOrigin(airport) {
-        let place = this.getPlace(airport);
+        let place = this.getPlace(airport)
         let geo = this.getGeo(place);
         this.props.setOrigin(Object.assign(place, { Location: geo }));
     }
 
     getGeo(place) {
-        for (let i = 0; i < this.props.geo.Continents.length; i++) {
-            for (let j = 0; j < this.props.geo.Continents[i].Countries.length; j++) {
-                if (this.props.geo.Continents[i].Countries[j].Name === place.CountryName) {
-                    for (let k = 0; k < this.props.geo.Continents[i].Countries[j].Cities.length; k++) {
-                        if (this.props.geo.Continents[i].Countries[j].Cities[k].IataCode === place.IataCode) {
-                            return this.props.geo.Continents[i].Countries[j].Cities[k].Location;
-                        }
-                    }
-                }
-            }
-        }
-        console.log('404: GEO NOT FOUND');
-        return "";
+        return this.props.geo[place.IataCode].Location;
     }
 
     getPlace(airport) {
@@ -124,30 +109,110 @@ class FlightShow extends React.Component {
 
     render() {
 
+        let loadingComponent;
+        if (window.loading){
+            loadingComponent = <ReactLoading className="flight-search result-search" type="bubbles" color="rgb(95, 188, 205)" />;
+        } else {
+            loadingComponent = <div className="invisible-div"></div>
+        }
 
-        return <div className="sidebar-flight-show modal left fade">
-            <div className="modal-dialog left">
-              <form className="modal-content flight-search-input-form" onSubmit={this.handleSubmit}>
-                <div className= "form-logo"> 
-                        <img className="modal logo" src="https://preview.ibb.co/jOHzTA/Screen-Shot-2018-10-26-at-1-48-18-PM.png" alt="Screen-Shot-2018-10-26-at-1-48-18-PM" border="0" />
-                </div>
-                <div className="form-origin-title">
-                    Airport Initials:
-                </div>
-                <input className="origin" name="origin" onChange={this.handleChange} placeholder="eg. 'SFO'" type="text" />
-                <div className="form-budget-title"> 
-                    Budget:
-                </div>
-                <input className="form-budget-input" name="amount" onChange={this.handleChange} type="text" />
-                <div className="form-region-title">
-                    Destination Country Initials:
-                </div>
-                <input className="form-region-input" name="country" onChange={this.handleChange} placeholder="eg. 'us'" type="text" />
+        // enable button after all input text has is not empty
+        $("#submit-button").prop("disabled", true);
 
-                <button className="form-button button-input">
+        $('input:text').keyup(function () {
+            let disable = false;
+            $('input:text').each(function () {
+                if ($(this).val() == "") {
+                    disable = true;
+                    canChangeColor();
+                }
+            });
+            $("#submit-button").prop("disabled", disable);
+        });
+
+        // change button color after all field has value
+        $("input[type='text'], textarea").on("input", function () {
+            canChangeColor();
+        });
+
+        function canChangeColor() {
+            let filled = true;
+
+            $("input[type='text'], textarea").each(function () {
+                if ($(this).val() == '') {filled = false;}
+            });
+
+            if (!filled) {
+                $("#submit-button").css({ color: "gray" });
+            } else {
+                $("#submit-button").css({ background: "rgb(95, 188, 205)" });
+            }
+        }
+
+        return <div>
+            {loadingComponent}
+            <div className="sidebar-flight-show modal left fade">
+              <div className="modal-dialog left">
+                <form className="modal-content flight-search-input-form" onSubmit={this.handleSubmit}>
+                  <div className="form-logo">
+                    <img className="modal logo" src="https://image.ibb.co/hOajVq/Logo3.png" alt="Fly-To" border="0" />
+                  </div>
+                  <div className="form-origin-title">From:</div>
+                  <div className="select-wrapper">
+                    <select className="origin" name="origin" onChange={this.handleChange} type="text">
+                      <option className="select-values" value="sfo">
+                        San Francisco Airport SFO
+                      </option>
+                      <option className="select-values" value="sjc">
+                        San Jose Airport SJC
+                      </option>
+                      <option className="select-values" value="oak">
+                        Oakland Airport OAK
+                      </option>
+                      <option className="select-values" value="hwd">
+                        Hayward Executive Airport HWD
+                      </option>
+                      <option className="select-values" value="jfk">
+                        John F. Kennedy Airport JFK
+                      </option>
+                    </select>
+                  </div>
+                 
+
+                  <div className="form-region-title form-origin-title">
+                    To:
+                    <div>
+                        <select className="origin form-region-input" name="country" onChange={this.handleChange} type="text">
+                        <option className="select-values" value="anywhere">
+                            Anywhere
+                        </option>
+                        <option className="select-values" value="us">
+                            United States
+                        </option>
+                        <option className="select-values" value="ca">
+                            Canada
+                        </option>
+                        <option className="select-values" value="mx">
+                            Mexico
+                        </option>
+                        <option className="select-values" value="jp">
+                            Japan
+                        </option>
+                        <option className="select-values" value="de">
+                            Germany
+                        </option>
+                        </select>
+                    </div>
+                  </div>
+
+                    <div className="form-budget-title">Budget:</div>
+                    <input className="form-budget-input" name="amount" onChange={this.handleChange} placeholder="eg. '200' " type="text" />
+            
+                  <button id="submit-button" className="form-button button-input">
                     GO
-                </button>
-              </form>
+                  </button>
+                </form>
+              </div>
             </div>
           </div>;
     }

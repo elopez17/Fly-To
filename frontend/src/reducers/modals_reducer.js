@@ -6,6 +6,9 @@ const modalReducer = (oldState={}, action) => {
         return action.modal;
         
         case CLOSE_MODAL:
+            if (window.loading) {
+                return oldState;
+            }
             return null;
 
         default:
