@@ -9,7 +9,7 @@ class FlightShow extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            origin: "",
+            origin: "sfo",
             amount: null,
             region: "",
             loading: false,
@@ -81,7 +81,6 @@ class FlightShow extends React.Component {
     }
 
     getOrigin(airport) {
-        debugger
         // let place = {
         //     value: this.getPlace(airport),
         //     writable: true
@@ -154,7 +153,6 @@ class FlightShow extends React.Component {
 
         let loadingComponent;
         if (this.state.loading){
-            debugger
             loadingComponent = <ReactLoading className="flight-search result-search" type="balls" color="rgb(95, 188, 205)" />;
             // this.props.openModal("loading");
         } else {
@@ -174,7 +172,7 @@ class FlightShow extends React.Component {
                         </div>
                         <div className="form-origin-title">From:</div>
                         <div className="select-wrapper">
-                            <select className="origin" onChange={this.handleChange} type="text" >
+                            <select className="origin" name="origin" onChange={this.handleChange} type="text" >
                                 <option className="select-values" value="sfo">San Francisco Airport SFO</option>
                                 <option className="select-values" value="sjc">San Jose Airport SJC</option>
                                 <option className="select-values" value="oak">Oakland Airport OAK</option>

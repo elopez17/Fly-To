@@ -24,7 +24,7 @@ function Modal({ modal, closeModal }) {
 
         case 'loading':
             component = <div className="modal-loading"><ReactLoading type="spin" /></div>
-            
+            break;
         default:
             return null;
     };

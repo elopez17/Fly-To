@@ -169,18 +169,18 @@ class Map extends Component {
       );
     } else {
 
-      return <div className="loading map-loading" color="#fff">
-          <ReactLoading type="balls" color="rgb(95, 188, 205)" />           
-        </div>;
 
 
       setTimeout(() => {
         this.forceUpdate();
       }, 2000);
       return (
-        <div>Waiting for Map to load...</div>
+        <div className="loading map-loading" color="#fff">
+          <ReactLoading type="balls" color="rgb(95, 188, 205)" />
+        </div>
         
       )
+
     }
 
   }
