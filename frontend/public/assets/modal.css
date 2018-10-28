@@ -18,7 +18,6 @@
   /* left: 50vw ; */
   /* transform: translate(160%, 55%); */
   /* transform: translate(50%, 55%); */
-  width: 280px;
   /* height: 420px; */
 
   /* margin-top: -200px;
@@ -30,20 +29,6 @@
   border-radius: 5px;
   /* border: 1px solid #000; */
 }
-
-/* .sidebar {
-  color: red;
-} */
-
-/* .btn-wrapper,.btn-primary{
-  width:200px;
-  display:inline-block;
-  overflow: auto;
-  white-space: nowrap;
-  margin:0px auto;
-  border:1px red solid;
-
-} */
 
 .modal-content.flight-search-input-form{
   display: grid;
@@ -59,16 +44,22 @@
 .sidebar-flight-show.modal.left.fade{
   height: 1000px;
   padding-top: 18px;
-  color: rgb(60, 69, 74);
-  background: #4D394B;
+  /* color: rgb(60, 69, 74); */
+  /* background: #4D394B; */
+  /* background: rgb(182,219,218); */
   color: rgb(202,196,201);
   font-family: NotoSansJP,Slack-Lato,appleLogo,sans-serif;
+  background:   url("http://images.ctfassets.net/dllbbq2u2bi6/45bK1sSWCAyIGwySWosauy/c18e7a5e181f7a78c016a1b5f3724029/home-hero-day-min.png?w=1440&h=1000&q=100&fm=webp") -1030px -120px,
+    linear-gradient(rgba(95, 188, 205, 1), rgba(182,219,218, 1));
 }
 
 .form-origin-title, .form-budget-title, .form-region-title, .form-button.button-input{
   color: #FFFFFF;
   margin-top: 15px;
-  font-weight: 1000;
+  /* font-weight: 1000; */
+  font-weight: bold;
+  border-radius: 30px;
+
 }
 
 /* .modal-content.flight-search-input-form{ */
@@ -82,7 +73,7 @@
 }
 
 .form-logo {
-  height: 100px;
+  height: 200px;
   justify-self: center;
 }
 
@@ -158,22 +149,59 @@
 .sidebar .sidebar-flight-show{
   left: 0;
   height: 100%;
+  
 }
 
 .origin, .form-region-input, .form-budget-input{
 
-  background: rgb(52,32,50);
+  /* background: rgb(52,32,50); */
+  background: rgb(95, 188, 205);
   border: none;
   height: 30px;
   font-size: 20px;
   color: #FFFFFF;
   padding: 6px 10px;
+  border-radius: 50px;
+  margin-left: 10px;
+  padding-left: 20px;
+  border: 1px solid rgb(116,122,118);
+  border-bottom: 2px solid rgb(116,122,118);
+
 }
 
-.origin, .form-region-input, .form-budget-input :hover{
+.form-budget-input{
+  width: 83%;
+}
 
+#submit-button{
+  width: 97%;
+}
+
+
+
+.origin{
+  height: 45px;
+  outline: none;
 
 }
+
+.select-wrapper{
+  border-radius: 40px;
+  display:inline-block;
+  margin-right: 10px;
+
+}
+
+
+
+.select-values{
+  margin-top: 10px;
+}
+
+/* .origin:hover, .form-region-input:hover, .form-budget-input :hover{
+      border: 2px solid rgb(116,122,118);
+    border-bottom: 3px solid rgb(116,122,118);
+} */
 .sidebar-container.btn-wrapper{
     width: auto;
     /* display: inline-block; */
@@ -197,16 +225,36 @@
   font-size: 14px;
   padding: 7px 15px 8px;
   font-weight: bold;
-  background: rgb(52,32,50);
+  /* background: rgb(52,32,50); */
+  background: rgb(95, 188, 205);
   border: 1px solid rgb(116,122,118);
   border-bottom: 2px solid rgb(116,122,118);
+  grid-row-end: 19;
+
+}
+
+.form-button.button-input:hover{
+  cursor: pointer;
+  /* height: 65px; */
+  font-size: 20px;
+  /* background: rgb(1, 170, 228); */
+  background: rgb(40, 181, 232) !important; 
+  border: 2px solid rgb(116,122,118);
+  border-bottom: 3px solid rgb(116,122,118);
+}
+
+.form-region-input{
+  width: 94%;
+  margin-top: 9px;
 }
 
 
 
 .btn.btn-primary{
-  color: #4D394B;
-  border-radius: 20px;
+  /* color: #4D394B; */
+  /* color: rgb(95, 188, 205); */
+  color: rgb(1, 170, 228);
+  border-radius: 50px;
 }
 
 .btn.btn-primary:hover{
@@ -215,59 +263,8 @@
     color: black;
 }
 
-
-
-
-/*******************************
-* MODAL AS LEFT/RIGHT SIDEBAR
-* Add "left" or "right" in modal parent div, after class="modal".
-* Get free snippets on bootpen.com
-*******************************/
-/* .sidebar .sidebar-flight-show{ */
-/* .modal.left .modal-dialog{
-  position: fixed;
-  margin: auto;
-  width: 320px;
-  height: 100%;
-  -webkit-transform: translate3d(0%, 0, 0);
-      -ms-transform: translate3d(0%, 0, 0);
-        -o-transform: translate3d(0%, 0, 0);
-          transform: translate3d(0%, 0, 0);
-} */
-
-/* .sidebar .flight-search-input-form{ */
-/* .modal.left .modal-content{
-  height: 100%;
-  overflow-y: auto;
-} */
-
-
-
-/*Left*/
-/* .modal.left.fad .modal-dialog{
-
-  left: -320px;
-  -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
-      -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
-        -o-transition: opacity 0.3s linear, left 0.3s ease-out;
-          transition: opacity 0.3s linear, left 0.3s ease-out; */
-/* } */
-
-/* .modal-dialog > .modal-content{ */
-/* .sidebar .sidebar-flight-show.fade{ */
-/* .modal.left.fade{
-  left: 0;
-  top: 0;
-} */
-      
-
-/* ----- MODAL STYLE ----- */
-/* .modal-content {
-  border-radius: 0;
-  border: none;
+.invisible-div{
+  height: 0;
 }
 
-.modal-header {
-  border-bottom-color: #EEEEEE;
-  background-color: #FAFAFA;
-} */
+
