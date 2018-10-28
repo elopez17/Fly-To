@@ -19,7 +19,7 @@ class Map extends Component {
       gPI = resp.data.key;
     });
     
-    this.createPins = this.createPins.bind(this);
+    // this.createPins = this.createPins.bind(this);
   }
 
   static defaultProps = {
@@ -110,8 +110,9 @@ class Map extends Component {
       { lat: 32.321, lng: -64.757 },
       { lat: 25.774, lng: -80.190 }
     ];
-    
+
     if (gPI) {
+      // debugger
       return (
           <GoogleMapReact
             bootstrapURLKeys={{ key: gPI }}
@@ -119,19 +120,15 @@ class Map extends Component {
             defaultZoom={this.props.zoom}
             options={this.createMapOptions}
           >
-          
-
-            
-            
             
             {
-            (this.props.locations) 
-            ? this.createPins()
-            : null
+              (Object.values(this.props.locations).length !== 0) 
+              ? this.createPins()
+              : null
             }
 
           {
-            (this.props.origin)
+            (Object.values(this.props.origin).length !== 0)
               ? <OriginPin
                 lat={this.getLatLng(this.props.origin.Location)[1]}
                 lng={this.getLatLng(this.props.origin.Location)[0]}
@@ -143,8 +140,12 @@ class Map extends Component {
           </GoogleMapReact>
       );
     } else {
+      setTimeout(() => {
+        this.forceUpdate();
+      }, 2000);
       return (
         <div>Waiting for Map to load...</div>
+        
       )
     }
 
