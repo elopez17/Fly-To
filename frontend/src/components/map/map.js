@@ -3,6 +3,7 @@ import GoogleMapReact from "google-map-react";
 // import { Polyline } from "google-map-react";
 import Pin from '../pin/pin';
 import OriginPin from '../pin/origin_pin';
+import {buttonStyle} from './map_theme_button_style';
 import { openModal } from '../../actions/modal_actions';
 import { getChims } from '../../util/chim_util';
 
@@ -12,14 +13,20 @@ import { getChims } from '../../util/chim_util';
 
 let gPI;
 
+
+
 class Map extends Component {
   constructor(props) {
     super(props);
     getChims().then(resp => {
       gPI = resp.data.key;
     });
-    
-    // this.createPins = this.createPins.bind(this);
+
+    this.state = { 
+      currentTheme: props.futureTheme,
+      currentThemeName: "Future"
+    };
+    this.switchTheme = this.switchTheme.bind(this);
   }
 
   static defaultProps = {
@@ -65,20 +72,7 @@ class Map extends Component {
     return pins;
   }
 
-  createMapOptions(maps) {
-    
-    return {
-      styles: require('./map_future_style.json'),
-      zoomControlOptions: {
-        position: maps.ControlPosition.RIGHT_BOTTOM,
-        style: maps.ZoomControlStyle.SMALL
-      },
-      mapTypeControlOptions: {
-        position: maps.ControlPosition.TOP_RIGHT
-      },
-      mapTypeControl: false,
-    };
-}
+  
 
 
 
@@ -101,6 +95,24 @@ class Map extends Component {
       )
   }
 
+  switchTheme() {
+    const themes = ["Future", "Dark", "Light", "Ween"];
+    const files = [this.props.futureTheme, this.props.darkTheme, this.props.lightTheme, this.props.weenTheme];
+    // debugger
+    let i = 0;
+    while (true) {
+      if (themes[i] === this.state.currentThemeName) {
+        this.setState({
+          currentTheme: files[(i + 1) % 4],
+          currentThemeName: themes[(i+1) % 4]
+        });
+        this.forceUpdate();
+        break;
+      }
+      i++;
+    }
+  }
+
 
 
   render() {
@@ -113,13 +125,30 @@ class Map extends Component {
 
     if (gPI) {
       // debugger
-      return (
+      return (<div style={{ height: "100vh", width: "100%" }}>
+        <button
+          style={buttonStyle}
+          onClick={this.switchTheme}
+        >{this.state.currentThemeName}</button>
           <GoogleMapReact
             bootstrapURLKeys={{ key: gPI }}
             defaultCenter={this.props.center}
             defaultZoom={this.props.zoom}
-            options={this.createMapOptions}
+          options={{
+            styles: this.state.currentTheme,
+            zoomControlOptions: {
+              position: 9,
+              style: 1
+            },
+            mapTypeControlOptions: {
+              position: 3
+            },
+            mapTypeControl: false,
+          }}
           >
+          
+          
+          
             
             {
               (Object.values(this.props.locations).length !== 0) 
@@ -137,8 +166,7 @@ class Map extends Component {
               : null
           }
   
-          </GoogleMapReact>
-      );
+        </GoogleMapReact></div>);
     } else {
       setTimeout(() => {
         this.forceUpdate();

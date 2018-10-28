@@ -8,7 +8,11 @@ const mapStateToProps = (state) => {
   // debugger
   return {
     origin: state.flights.origin,
-    locations: state.flights.results
+    locations: state.flights.results,
+    futureTheme: require("./map_future_style.json"),
+    weenTheme: require("./map_ween_style.json"),
+    lightTheme: require("./map_light_style.json"),
+    darkTheme: require("./map_dark_style.json")
   };
 };
 

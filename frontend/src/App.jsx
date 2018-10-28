@@ -106,7 +106,7 @@ class App extends Component {
 
   // <SplashContainer />
   render() {
-    return <div style={{ height: "100vh", width: "100%" }}>
+    return <div>
         <Modal />
 
 
