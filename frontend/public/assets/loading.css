@@ -15,8 +15,11 @@ position: fixed;
 }
 
 .icon-loading{
+    position: fixed;
     height: 200%;
     width: 200%;
+    top: 50vw;
+    left: 50vw;
     
 }
 
@@ -28,4 +31,18 @@ position: fixed;
     width: 80px;
 
 
+}
+
+.flight-search.result-search svg{
+    position: relative;
+    top: 27vw;
+    left: 7vw;
+    height: 300%;
+}
+
+.loading.map-loading svg{
+    position: relative;
+    top: 1vw;
+    left: 3vw;
+    height: 300%;
 }

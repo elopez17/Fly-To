@@ -50,11 +50,14 @@ function Modal({ modal, closeModal }) {
 
 const mapStateToProps = (state) => {
     return {
-        modal: state.ui.modal
+        modal: state.ui.modal,
+        loading: state.ui.loading
     }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, ownProps) => {
+ 
+
     return {
         closeModal: () => {
             dispatch(closeModal())

@@ -14,8 +14,7 @@ class FlightShow extends React.Component {
             origin: "sfo",
             amount: null,
             region: "",
-            loading: false,
-            country: ""
+            country: "anywhere"
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -32,19 +31,6 @@ class FlightShow extends React.Component {
 
     }
 
-    // componentDidUpdate(prevProps){
-    //     // https://stackoverflow.com/questions/40359800/how-to-toggle-boolean-state-of-react-component
-    //     // https:reactjs.org/docs/state-and-lifecycle.html#state-updates-may-be-asynchronous
-    //     debugger
-    //     if (prevProps.loading != this.state.loading){
-    //         this.setState( prevState => {
-    //             return{
-    //                 loading: !prevState.loading
-    //             }
-    //         })
-    //     }
-    // }
-
     handleChange(e) {
         //handles change for fields in the form.
         this.setState({ [e.target.name]: e.target.value })
@@ -55,32 +41,23 @@ class FlightShow extends React.Component {
         // need to refactor to call thunk actions
 
         let origin = this.state.origin;
-        // const url = `http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/US/usd/en-US/us/us/anytime/anytime?apikey=prtl6749387986743898559646983194`;
-        // const url = `http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/US/usd/en-US/${origin}/us/anytime/anytime?apikey=prtl6749387986743898559646983194`;
-        // debugger
-        // Request.get(url)
-        //   .then(data => console.log(data))
-        //   .then(console.log("Calling api."))
-        //   .catch(err => console.log(err));
-        // this.props.fetchAllData(this.state);
-
-        // this.setState({})
-        this.setState({loading: true})
-        // this.props.openModal("loading");
-
+        
+        if (window.loading === true){
+            return null
+        }
+        
+        window.loading = true;
+        
         this.props.getAllGeo().then(() =>
             this.props.getAllQuotes({destination: this.state.country}).then(() => {
                 this.getOrigin(this.state.origin.toUpperCase());
                 this.getResults(parseInt(this.state.amount))
             }).then(() => {
-                this.setState({loading: false})
-            // }).then(()=>{
-            //     this.props.closeModal();
+                window.loading = false;
+                this.props.closeModal();
             })
         );
-
-        // this.getOrigin("SFO");
-        // this.getResults(parseInt(this.state.amount))
+        
     }
 
     getOrigin(airport) {
@@ -88,8 +65,8 @@ class FlightShow extends React.Component {
         //     value: this.getPlace(airport),
         //     writable: true
         // }
+
         let place = this.getPlace(airport)
-            
         let geo = this.getGeo(place);
         this.props.setOrigin(Object.assign(place, { Location: geo }));
     }
@@ -155,15 +132,12 @@ class FlightShow extends React.Component {
     render() {
 
         let loadingComponent;
-        if (this.state.loading){
-            loadingComponent = <ReactLoading className="flight-search result-search" type="balls" color="rgb(95, 188, 205)" />;
-            // this.props.openModal("loading");
+        if (window.loading){
+            loadingComponent = <ReactLoading className="flight-search result-search" type="bubbles" color="rgb(95, 188, 205)" />;
         } else {
             loadingComponent = <div className="invisible-div"></div>
-            // this.props.closeModal();
         }
 
-        
         // enable button after all input text has is not empty
         $("#submit-button").prop("disabled", true);
 
@@ -197,42 +171,72 @@ class FlightShow extends React.Component {
             }
         }
 
-        return( 
-            <div>
-                {loadingComponent}
-                <div className="sidebar-flight-show modal left fade">
-                    <div className="modal-dialog left">
-                    <form className="modal-content flight-search-input-form" onSubmit={this.handleSubmit}>
-                        <div className="form-logo">
-                        {/* <img className="modal logo" src="https://preview.ibb.co/jOHzTA/Screen-Shot-2018-10-26-at-1-48-18-PM.png" alt="Screen-Shot-2018-10-26-at-1-48-18-PM" border="0" /> */}
-                        <img className="modal logo" src="https://image.ibb.co/hOajVq/Logo3.png" alt="Fly-To" border="0" />
-                        </div>
-                        <div className="form-origin-title">From:</div>
-                        <div className="select-wrapper">
-                            <select className="origin" name="origin" onChange={this.handleChange} type="text" >
-                                <option className="select-values" value="sfo">San Francisco Airport SFO</option>
-                                <option className="select-values" value="sjc">San Jose Airport SJC</option>
-                                <option className="select-values" value="oak">Oakland Airport OAK</option>
-                                <option className="select-values" value="hwd">Hayward Executive Airport HWD</option>
-                                <option className="select-values" value="jfk">John F. Kennedy Airport JFK</option>
-                            </select>
-                        </div>
-                        <div className="form-budget-title">Budget:</div>
-                        <input className="form-budget-input" name="amount" onChange={this.handleChange} type="text" />
-                        <div className="form-region-title">Region:</div>
-                        <input className="form-region-input" name="region" onChange={this.handleChange} type="text" />
- 
-                        <div className="form-region-title">
-                            Destination Country Initials:
-                        </div>
-                        <input className="form-region-input" name="country" onChange={this.handleChange} placeholder="eg. 'us'" type="text" />
-                        <button id="submit-button" className="form-button button-input">GO</button>
-                    </form>
-                    </div>
-                </div>
-            </div>
+        return <div>
+            {loadingComponent}
+            <div className="sidebar-flight-show modal left fade">
+              <div className="modal-dialog left">
+                <form className="modal-content flight-search-input-form" onSubmit={this.handleSubmit}>
+                  <div className="form-logo">
+                    <img className="modal logo" src="https://image.ibb.co/hOajVq/Logo3.png" alt="Fly-To" border="0" />
+                  </div>
+                  <div className="form-origin-title">From:</div>
+                  <div className="select-wrapper">
+                    <select className="origin" name="origin" onChange={this.handleChange} type="text">
+                      <option className="select-values" value="sfo">
+                        San Francisco Airport SFO
+                      </option>
+                      <option className="select-values" value="sjc">
+                        San Jose Airport SJC
+                      </option>
+                      <option className="select-values" value="oak">
+                        Oakland Airport OAK
+                      </option>
+                      <option className="select-values" value="hwd">
+                        Hayward Executive Airport HWD
+                      </option>
+                      <option className="select-values" value="jfk">
+                        John F. Kennedy Airport JFK
+                      </option>
+                    </select>
+                  </div>
+                 
 
-        )
+                  <div className="form-region-title form-origin-title">
+                    To:
+                    <div clasName="select-wrapper">
+                        <select className="origin form-region-input" name="country" onChange={this.handleChange} type="text">
+                        <option className="select-values" value="anywhere">
+                            Anywhere
+                        </option>
+                        <option className="select-values" value="us">
+                            United States
+                        </option>
+                        <option className="select-values" value="ca">
+                            Canada
+                        </option>
+                        <option className="select-values" value="mx">
+                            Mexico
+                        </option>
+                        <option className="select-values" value="jp">
+                            Japan
+                        </option>
+                        <option className="select-values" value="de">
+                            Germany
+                        </option>
+                        </select>
+                    </div>
+                  </div>
+
+                    <div className="form-budget-title">Budget:</div>
+                    <input className="form-budget-input" name="amount" onChange={this.handleChange} placeholder="eg. '200' " type="text" />
+            
+                  <button id="submit-button" className="form-button button-input">
+                    GO
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>;
     }
 }
 

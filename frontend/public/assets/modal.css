@@ -49,7 +49,7 @@
   /* background: rgb(182,219,218); */
   color: rgb(202,196,201);
   font-family: NotoSansJP,Slack-Lato,appleLogo,sans-serif;
-  background:   url("http://images.ctfassets.net/dllbbq2u2bi6/45bK1sSWCAyIGwySWosauy/c18e7a5e181f7a78c016a1b5f3724029/home-hero-day-min.png?w=1440&h=1000&q=100&fm=webp") -1050px -180px,
+  background:   url("http://images.ctfassets.net/dllbbq2u2bi6/45bK1sSWCAyIGwySWosauy/c18e7a5e181f7a78c016a1b5f3724029/home-hero-day-min.png?w=1440&h=1000&q=100&fm=webp") -1030px -120px,
     linear-gradient(rgba(95, 188, 205, 1), rgba(182,219,218, 1));
 }
 
@@ -169,6 +169,14 @@
 
 }
 
+.form-budget-input{
+  width: 83%;
+}
+
+#submit-button{
+  width: 97%;
+}
+
 
 
 .origin{
@@ -180,8 +188,11 @@
 .select-wrapper{
   border-radius: 40px;
   display:inline-block;
+  margin-right: 10px;
 
 }
+
+
 
 .select-values{
   margin-top: 10px;
@@ -218,7 +229,7 @@
   background: rgb(95, 188, 205);
   border: 1px solid rgb(116,122,118);
   border-bottom: 2px solid rgb(116,122,118);
-  grid-row-end: 11;
+  grid-row-end: 19;
 
 }
 
@@ -230,6 +241,11 @@
   background: rgb(40, 181, 232) !important; 
   border: 2px solid rgb(116,122,118);
   border-bottom: 3px solid rgb(116,122,118);
+}
+
+.form-region-input{
+  width: 94%;
+  margin-top: 9px;
 }
 
 

@@ -8,9 +8,8 @@ import Root from './root.jsx';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store = configureStore();
-  // window.getChims = APIUtil.getChims();
-  // APIUtil.getAll()();
 
+  window.loading = store.getState().ui.loading
 
   ReactDOM.render(<Root  store={store}/>, document.getElementById('root'));
 });

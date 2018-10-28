@@ -100,7 +100,6 @@ class Map extends Component {
 
   createPins() {
     let pins = Object.values(this.parseProps(this.props.locations));
-      // debugger
       return (
         pins.map((pin, i) => {
               return (
@@ -121,15 +120,6 @@ class Map extends Component {
 
   render() {
 
-    // debugger
-    // let loadingComponent;
-    // if (this.state.loading) {
-    //   // loadingComponent = <div>LOADING</div>
-    //   loadingComponent = <ReactLoading type="spin" />
-
-    // } else {
-    //   loadingComponent = <div>NOT LOADING</div>
-    // }
 
     const triangleCoords = [
       { lat: 25.774, lng: -80.190 },
@@ -140,7 +130,6 @@ class Map extends Component {
 
 
     if (gPI) {
-      // debugger
       return (
           <GoogleMapReact
             bootstrapURLKeys={{ key: gPI }}
@@ -176,7 +165,7 @@ class Map extends Component {
       }, 2000);
       return (
         <div className="loading map-loading" color="#fff">
-          <ReactLoading type="balls" color="rgb(95, 188, 205)" />
+          <ReactLoading type="bubbles" color="rgb(95, 188, 205)" />
         </div>
         
       )

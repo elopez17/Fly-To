@@ -12,7 +12,7 @@ const mapStateToProps = state => {
         places: state.flights.places,
         geo: state.flights.geo,
         origin: state.flights.origin,
-        loading: false
+        loading: state.ui.loading
         
     })
 }

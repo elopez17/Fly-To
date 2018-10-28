@@ -6,7 +6,6 @@ import { getChims } from '../../util/chim_util';
 import { isLoading, isDoneLoading } from '../../actions/loading_actions';
 
 const mapStateToProps = (state) => {
-  // debugger
   return {
     origin: state.flights.origin,
     locations: state.flights.results,
