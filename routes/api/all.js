@@ -1,11 +1,19 @@
 // import Axios from "axios";
 const Chim = require('../../models/chim');
+const Geo = require('../../models/Geo');
 const Axios = require("axios");
 const cors = require("cors");
 const express = require("express");
 const router = express.Router();
 
 router.get("/test", (req, res) => res.json({ msg: "this is the all route" }));
+
+router.get("/locations", (req, res) => {
+    Geo.find({}).then(geos => {
+        // console.log(geo.Location);
+        return res.status(201).send(geos);
+    });
+});
 
 router.get("/chimichanga", (req, res) => {
     Chim.findOne({ name: "google" }).then(resp => {

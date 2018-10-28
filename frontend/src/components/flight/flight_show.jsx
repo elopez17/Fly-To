@@ -6,14 +6,11 @@ import $ from "jquery";
 
 
 class FlightShow extends React.Component {
-
-
     constructor(props) {
         super(props);
         this.state = {
             origin: "sfo",
             amount: null,
-            region: "",
             country: "anywhere"
         };
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -48,43 +45,24 @@ class FlightShow extends React.Component {
         
         window.loading = true;
         
-        this.props.getAllGeo().then(() =>
-            this.props.getAllQuotes({destination: this.state.country}).then(() => {
-                this.getOrigin(this.state.origin.toUpperCase());
-                this.getResults(parseInt(this.state.amount))
-            }).then(() => {
-                window.loading = false;
-                this.props.closeModal();
-            })
-        );
+        this.props.getAllQuotes({destination: this.state.country}).then(() => {
+            this.getOrigin(this.state.origin.toUpperCase());
+            this.getResults(parseInt(this.state.amount))
+        }).then(() => {
+            window.loading = false;
+            this.props.closeModal();
+        });
         
     }
 
     getOrigin(airport) {
-        // let place = {
-        //     value: this.getPlace(airport),
-        //     writable: true
-        // }
-
         let place = this.getPlace(airport)
         let geo = this.getGeo(place);
         this.props.setOrigin(Object.assign(place, { Location: geo }));
     }
 
     getGeo(place) {
-        for (let i = 0; i < this.props.geo.Continents.length; i++) {
-            for (let j = 0; j < this.props.geo.Continents[i].Countries.length; j++) {
-                if (this.props.geo.Continents[i].Countries[j].Name === place.CountryName) {
-                    for (let k = 0; k < this.props.geo.Continents[i].Countries[j].Cities.length; k++) {
-                        if (this.props.geo.Continents[i].Countries[j].Cities[k].IataCode === place.IataCode) {
-                            return this.props.geo.Continents[i].Countries[j].Cities[k].Location;
-                        }
-                    }
-                }
-            }
-        }
-        console.log('404: GEO NOT FOUND');
-        return "";
+        return this.props.geo[place.IataCode].Location;
     }
 
     getPlace(airport) {
@@ -203,7 +181,7 @@ class FlightShow extends React.Component {
 
                   <div className="form-region-title form-origin-title">
                     To:
-                    <div clasName="select-wrapper">
+                    <div>
                         <select className="origin form-region-input" name="country" onChange={this.handleChange} type="text">
                         <option className="select-values" value="anywhere">
                             Anywhere
