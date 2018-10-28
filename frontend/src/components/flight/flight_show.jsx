@@ -93,7 +93,7 @@ class FlightShow extends React.Component {
     }
 
     getResults(budget) {
-        console.log(budget);
+        // console.log(budget);
         let results = {};
         for (let i = 0; i < this.props.quotes.length; i++) {
             if (this.props.quotes[i].OutboundLeg.OriginId === this.props.origin.PlaceId &&
