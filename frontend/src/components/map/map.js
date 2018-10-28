@@ -78,7 +78,6 @@ class Map extends Component {
 
   createPins() {
     let pins = Object.values(this.parseProps(this.props.locations));
-      // debugger
       return (
         pins.map((pin, i) => {
               return (
@@ -98,7 +97,6 @@ class Map extends Component {
   switchTheme() {
     const themes = ["Future", "Dark", "Light", "Ween"];
     const files = [this.props.futureTheme, this.props.darkTheme, this.props.lightTheme, this.props.weenTheme];
-    // debugger
     let i = 0;
     while (true) {
       if (themes[i] === this.state.currentThemeName) {
@@ -123,7 +121,6 @@ class Map extends Component {
     ];
 
     if (gPI) {
-      // debugger
       return (<div style={{ height: "100vh", width: "100%" }}>
         <button
           style={buttonStyle}
