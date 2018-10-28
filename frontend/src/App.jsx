@@ -40,12 +40,12 @@ class App extends Component {
   componentDidMount() {
     this.props.openModal("splash")
     
-    this.props.getAllGeo().then(() => 
-      this.props.getAllQuotes().then(() => {
-        this.getOrigin("SFO");
-        this.getResults(500);
-      })
-    );
+    // this.props.getAllGeo().then(() => 
+    //   this.props.getAllQuotes().then(() => {
+    //     this.getOrigin("SFO");
+    //     this.getResults(500);
+    //   })
+    // );
   }
 //  {country} /{currency} /{locale} /{origin} /{destination} /{outboundPartialDate} /{inboundPartialDate}
 

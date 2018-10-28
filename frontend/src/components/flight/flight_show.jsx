@@ -12,7 +12,8 @@ class FlightShow extends React.Component {
             origin: "",
             amount: null,
             region: "",
-            loading: false
+            loading: false,
+            country: ""
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -65,8 +66,8 @@ class FlightShow extends React.Component {
         // this.props.openModal("loading");
 
         this.props.getAllGeo().then(() =>
-            this.props.getAllQuotes().then(() => {
-                this.getOrigin("SFO");
+            this.props.getAllQuotes({destination: this.state.country}).then(() => {
+                this.getOrigin(this.state.origin.toUpperCase());
                 this.getResults(parseInt(this.state.amount))
             }).then(() => {
                 this.setState({loading: false})
@@ -103,6 +104,8 @@ class FlightShow extends React.Component {
                 }
             }
         }
+        console.log('404: GEO NOT FOUND');
+        return "";
     }
 
     getPlace(airport) {
@@ -113,10 +116,12 @@ class FlightShow extends React.Component {
                 return place;
             }
         }
+        console.log('404: PLACE NOT FOUND');
+        return {};
     }
 
     getResults(budget) {
-        debugger
+        // console.log(budget);
         let results = {};
         for (let i = 0; i < this.props.quotes.length; i++) {
             if (this.props.quotes[i].OutboundLeg.OriginId === this.props.origin.PlaceId &&
@@ -131,6 +136,10 @@ class FlightShow extends React.Component {
                         results[this.props.quotes[i].QuoteId]['Location'] = geo;
                         results[this.props.quotes[i].QuoteId]['Airport'] = airport;
                         break;
+                    } else if (j === this.props.places.length - 1) {
+                        console.log('404: LOCATION/AIRPORT NOT FOUND FOR RESULT');
+                        results[this.props.quotes[i].QuoteId]['Location'] = "";
+                        results[this.props.quotes[i].QuoteId]['Airport'] = "";
                     }
                 }
 
@@ -178,11 +187,16 @@ class FlightShow extends React.Component {
                         <div className="form-region-title">Region:</div>
                         <input className="form-region-input" name="region" onChange={this.handleChange} type="text" />
  
+                        <div className="form-region-title">
+                            Destination Country Initials:
+                        </div>
+                        <input className="form-region-input" name="country" onChange={this.handleChange} placeholder="eg. 'us'" type="text" />
                         <button className="form-button button-input">GO</button>
                     </form>
                     </div>
                 </div>
             </div>
+
         )
     }
 }

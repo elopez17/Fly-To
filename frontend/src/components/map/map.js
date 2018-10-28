@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
-// import { GoogleApiWrapper, InfoWindow, Map, Marker } from "google-map-react";
-import Pin from '../pin/pin'
-// import { pinStyle, pinStyleHover } from '../pin/pin_style'
+// import { Polyline } from "google-map-react";
+import Pin from '../pin/pin';
+import OriginPin from '../pin/origin_pin';
 import { openModal } from '../../actions/modal_actions';
 import { getChims } from '../../util/chim_util';
+
 import ReactLoading from "react-loading";
-
-
 
 
 const googleAPI = require("../../keys").googleAPI;
@@ -16,9 +15,16 @@ let gPI;
 class Map extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       loading: true
     }
+
+    getChims().then(resp => {
+      gPI = resp.data.key;
+    });
+    
+    // this.createPins = this.createPins.bind(this);
   }
 
   static defaultProps = {
@@ -26,7 +32,7 @@ class Map extends Component {
       lat: 37.77,
       lng: -122.41
     },
-    zoom: 0
+    zoom: 3
   };
 
 
@@ -39,7 +45,8 @@ class Map extends Component {
   }
 
   getDoa(date) {
-    return date.slice(0,10);
+    let fDate = date.slice(0,10).split('-');
+    return `${fDate[1]}/${fDate[2]}/${fDate[0].slice(2)}`;
   }
 
   parseProps() {
@@ -55,13 +62,14 @@ class Map extends Component {
         lng: lL[0],
         airportName: location.Airport,
         doa: date,
-        weather: "NAY!",
+        weather: "Warm weather",
         price: `$${location.MinPrice}`
       };
       i++;
     });
     return pins;
   }
+
 
   componentDidMount(){
     this.setState({loading: false})
@@ -73,26 +81,46 @@ class Map extends Component {
     });
   }
 
+  createMapOptions(maps) {
+    
+    return {
+      styles: require('./map_future_style.json'),
+      zoomControlOptions: {
+        position: maps.ControlPosition.RIGHT_BOTTOM,
+        style: maps.ZoomControlStyle.SMALL
+      },
+      mapTypeControlOptions: {
+        position: maps.ControlPosition.TOP_RIGHT
+      },
+      mapTypeControl: false,
+    };
+}
+
+
 
   createPins() {
     let pins = Object.values(this.parseProps(this.props.locations));
-    return (
-      pins.map((pin, i) => (
-        <Pin
-          key={i}
-          lat={pin.lat}
-          lng={pin.lng}
-          airportName={pin.airportName}
-          doa={pin.doa}
-          weather={pin.weather}
-          price={pin.price}/>
-      ))
-    )
+      // debugger
+      return (
+        pins.map((pin, i) => {
+              return (
+                <Pin
+                  key={i}
+                  lat={pin.lat}
+                  lng={pin.lng}
+                  airportName={pin.airportName}
+                  doa={pin.doa}
+                  weather={pin.weather}
+                  price={pin.price} />
+              )
+        })
+      )
   }
 
 
 
   render() {
+
     // debugger
     // let loadingComponent;
     // if (this.state.loading) {
@@ -103,21 +131,56 @@ class Map extends Component {
     //   loadingComponent = <div>NOT LOADING</div>
     // }
 
+    const triangleCoords = [
+      { lat: 25.774, lng: -80.190 },
+      { lat: 18.466, lng: -66.118 },
+      { lat: 32.321, lng: -64.757 },
+      { lat: 25.774, lng: -80.190 }
+    ];
+
+
     if (gPI) {
+      // debugger
       return (
           <GoogleMapReact
             bootstrapURLKeys={{ key: gPI }}
             defaultCenter={this.props.center}
             defaultZoom={this.props.zoom}
+            options={this.createMapOptions}
           >
-            {(this.props.locations) ? this.createPins() : null}
+            
+            {
+              (Object.values(this.props.locations).length !== 0) 
+              ? this.createPins()
+              : null
+            }
+
+          {
+            (Object.values(this.props.origin).length !== 0)
+              ? <OriginPin
+                lat={this.getLatLng(this.props.origin.Location)[1]}
+                lng={this.getLatLng(this.props.origin.Location)[0]}
+                CityName={this.props.origin.CityName}
+              />
+              : null
+          }
   
           </GoogleMapReact>
       );
     } else {
+
       return <div className="loading map-loading" color="#fff">
           <ReactLoading type="balls" color="rgb(95, 188, 205)" />           
         </div>;
+
+
+      setTimeout(() => {
+        this.forceUpdate();
+      }, 2000);
+      return (
+        <div>Waiting for Map to load...</div>
+        
+      )
     }
 
   }
