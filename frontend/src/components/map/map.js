@@ -106,7 +106,6 @@ class Map extends Component {
           currentTheme: files[(i + 1) % 4],
           currentThemeName: themes[(i+1) % 4]
         });
-        this.forceUpdate();
         break;
       }
       i++;
