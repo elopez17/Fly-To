@@ -10,7 +10,7 @@ class FlightShow extends React.Component {
         this.state = {
             origin: "",
             amount: null,
-            region: ""
+            country: ""
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -47,8 +47,8 @@ class FlightShow extends React.Component {
         // this.setState({})
 
         this.props.getAllGeo().then(() =>
-            this.props.getAllQuotes().then(() => {
-                this.getOrigin("SFO");
+            this.props.getAllQuotes({destination: this.state.country}).then(() => {
+                this.getOrigin(this.state.origin.toUpperCase());
                 this.getResults(parseInt(this.state.amount))
 
             })
@@ -134,15 +134,15 @@ class FlightShow extends React.Component {
                 <div className="form-origin-title">
                     From:
                 </div>
-                <input className="origin" onChange={this.handleChange} type="text" />
+                <input className="origin" name="origin" onChange={this.handleChange} type="text" />
                 <div className="form-budget-title"> 
                     Budget:
                 </div>
                 <input className="form-budget-input" name="amount" onChange={this.handleChange} type="text" />
                 <div className="form-region-title">
-                    Region:
+                    Country:
                 </div>
-                <input className="form-region-input" name="region" onChange={this.handleChange} type="text" />
+                <input className="form-region-input" name="country" onChange={this.handleChange} type="text" />
 
                 <button className="form-button button-input">
                     GO
