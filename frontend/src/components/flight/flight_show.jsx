@@ -132,17 +132,17 @@ class FlightShow extends React.Component {
                         <img className="modal logo" src="https://preview.ibb.co/jOHzTA/Screen-Shot-2018-10-26-at-1-48-18-PM.png" alt="Screen-Shot-2018-10-26-at-1-48-18-PM" border="0" />
                 </div>
                 <div className="form-origin-title">
-                    From:
+                    Airport Initials:
                 </div>
-                <input className="origin" name="origin" onChange={this.handleChange} type="text" />
+                <input className="origin" name="origin" onChange={this.handleChange} placeholder="eg. 'SFO'" type="text" />
                 <div className="form-budget-title"> 
                     Budget:
                 </div>
                 <input className="form-budget-input" name="amount" onChange={this.handleChange} type="text" />
                 <div className="form-region-title">
-                    Country:
+                    Destination Country Initials:
                 </div>
-                <input className="form-region-input" name="country" onChange={this.handleChange} type="text" />
+                <input className="form-region-input" name="country" onChange={this.handleChange} placeholder="eg. 'us'" type="text" />
 
                 <button className="form-button button-input">
                     GO
