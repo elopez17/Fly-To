@@ -227,7 +227,7 @@
   /* height: 65px; */
   font-size: 20px;
   /* background: rgb(1, 170, 228); */
-  background: rgb(40, 181, 232);
+  background: rgb(40, 181, 232) !important; 
   border: 2px solid rgb(116,122,118);
   border-bottom: 3px solid rgb(116,122,118);
 }
@@ -250,4 +250,5 @@
 .invisible-div{
   height: 0;
 }
+
 

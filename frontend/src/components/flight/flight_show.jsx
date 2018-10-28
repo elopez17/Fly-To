@@ -2,6 +2,8 @@ import React from "react";
 // import { Link } from "react-router-dom";
 import Axios from "axios";
 import ReactLoading from "react-loading";
+import $ from "jquery";
+
 
 class FlightShow extends React.Component {
 
@@ -26,6 +28,7 @@ class FlightShow extends React.Component {
 
     componentDidMount() {
         this.setState({loading: false})
+        $("#submit-button").css({ background: "gray" });
 
     }
 
@@ -160,6 +163,40 @@ class FlightShow extends React.Component {
             // this.props.closeModal();
         }
 
+        
+        // enable button after all input text has is not empty
+        $("#submit-button").prop("disabled", true);
+
+        $('input:text').keyup(function () {
+            let disable = false;
+            $('input:text').each(function () {
+                if ($(this).val() == "") {
+                    disable = true;
+                    canChangeColor();
+                }
+            });
+            $("#submit-button").prop("disabled", disable);
+        });
+
+        // change button color after all field has value
+        $("input[type='text'], textarea").on("input", function () {
+            canChangeColor();
+        });
+
+        function canChangeColor() {
+            let filled = true;
+
+            $("input[type='text'], textarea").each(function () {
+                if ($(this).val() == '') {filled = false;}
+            });
+
+            if (!filled) {
+                $("#submit-button").css({ color: "gray" });
+            } else {
+                $("#submit-button").css({ background: "rgb(95, 188, 205)" });
+            }
+        }
+
         return( 
             <div>
                 {loadingComponent}
@@ -189,7 +226,7 @@ class FlightShow extends React.Component {
                             Destination Country Initials:
                         </div>
                         <input className="form-region-input" name="country" onChange={this.handleChange} placeholder="eg. 'us'" type="text" />
-                        <button className="form-button button-input">GO</button>
+                        <button id="submit-button" className="form-button button-input">GO</button>
                     </form>
                     </div>
                 </div>
