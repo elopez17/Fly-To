@@ -38,14 +38,6 @@ class Pin extends Component {
                 </div>
              );
     }
-    
-    
-    
-    
-    
-    
-    
-    
   }
 }
 

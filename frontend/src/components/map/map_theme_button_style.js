@@ -1,0 +1,20 @@
+export const buttonStyle = {
+  background: "rgb(95, 188, 205)",
+  border: "1px solid white",
+  color: "white",
+  marginBottom: "4px",
+  marginLeft: "80px",
+  paddingBottom: "2px",
+  position: "absolute",
+  cursor: "pointer",
+  userSelect: "none",
+  borderRadius: "3px",
+  height: "20px",
+  width: "80px",
+  boxShadow: "rgba(0, 0, 0, 0.3) 0px 1px 4px - 1px",
+  overflow: "hidden",
+  bottom: "0px",
+  left: "0px",
+  focus: "none",
+  zIndex: 3
+};

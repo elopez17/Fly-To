@@ -8,7 +8,12 @@ export const RECEIVE_RESULTS = "RECEIVE_RESULTS";
 const receiveAllGeo = (resp) => {
   let geos = {};
   for (let i = 0; i < resp.data.length; i++) {
-    geos[resp.data[i].IataCode] = resp.data[i];
+    // if (geos[resp.data[i].IataCode]) {
+      geos[resp.data[i].IataCode] = resp.data[i];
+    // } else {
+      // geos[resp.data[i].IataCode] = {Location: ""};
+
+    // }
   }
   return ({
   type: RECEIVE_ALL_GEO,
@@ -43,6 +48,6 @@ export const fetchAllQuotes = (filters) => (dispatch) => {
     origin: 'us', destination: 'us',
     outbound: 'anytime', inbound: 'anytime'}, filters);
 //  {country} /{currency} /{locale} /{origin} /{destination} /{outboundPartialDate} /{inboundPartialDate}
-    console.log(filters);
+    
   return APIUtil.fetchAllQuotes(filters).then(data => dispatch(receiveAllQuotes(data)));
 };
