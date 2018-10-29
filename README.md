@@ -190,22 +190,33 @@ Here is the data after being restructured:
 
 #### TITLE_OF_FEATURE1
 
-Add a badass description here. Maybe just a sentence or two. Or perhaps three...
+A single Modal component that is responsible to return and render another react component.
+
+We use the modal to display the splash page, loading screen, and sidebar.
+
+The loading animation is accomplished by using a 3rd party lirbary - React Loading.
+
+![Alt Text](https://gph.is/2RsahEv)
 
 <!-- ![Alt Text](make a gif and paste the link here, see examples above) -->
 
 ```js
-code in here
+    let component;
+    switch  (modal) {
+        case 'sidebar':
+            component = <div className="sidebar-container"><SidebarContainer /></div> 
+            break;
+        case 'splash':
+            component = <div className="splash-container"><SplashContainer /></div>
+            break;
+        case 'loading':
+            component = <div className="modal-loading"><ReactLoading type="spin" /></div>
+            break;
+        default:
+            return null;
+    };
 ```
-#### TITLE_OF_FEATURE2(optional)
 
-Add a badass description here. Maybe just a sentence or two. Or perhaps three...
-
-<!-- ![Alt Text](make a gif and paste the link here, see examples above) -->
-
-```js
-code in here
-```
 
 # The End?
 
@@ -217,5 +228,3 @@ code in here
 2. Polylines between origin and pins
 
 3. Find an Api service that can provide more relevant information
-
-4. 
