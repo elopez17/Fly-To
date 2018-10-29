@@ -11,7 +11,7 @@ class FlightShow extends React.Component {
         this.state = {
             origin: "sfo",
             amount: null,
-            country: "anywhere"
+            country: "us"
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -188,12 +188,12 @@ class FlightShow extends React.Component {
                   <div className="form-region-title form-origin-title">
                     To:
                     <div>
-                      <select className="origin form-region-input" name="country" onChange={this.handleChange} type="text">
-                        <option disabled={this.handleDisable(this.state.origin === "sjc" ? "" : this.state.origin)} className="select-values" value="anywhere">
-                          Anywhere
-                        </option>
+                      <select required="required" className="origin form-region-input" name="country" onChange={this.handleChange} type="text">
                         <option className="select-values" value="us">
-                          United States
+                            United States
+                        </option>
+                        <option disabled={this.handleDisable(this.state.origin === "sjc" ? "" : this.state.origin)} className="select-values" value="anywhere">
+                            Anywhere
                         </option>
                         <option disabled={this.handleDisable(this.state.origin)} className="select-values" value="ca">
                           Canada
