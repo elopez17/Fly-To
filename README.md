@@ -31,8 +31,6 @@ Filtering through different types of data. Sorting results in many forms.
 
 ## Favorite Key Features:
 
-### Matt's Top-Picks
-
 #### Holiday Themed Map
 
 Like searching the web in the dark (or light!)? We're not here to judge! In fact, we've given you four beautiful themes to customize the way you search the world of [Fly-To](http://fly-to.wiki). Using seperate JSON files, and some fresh baked code (this doesn't exist anywhere else on the internet), a button switched the style of a google-map-react component. Boom!
@@ -117,8 +115,6 @@ createPins() {
   }
 ```
 
-### Eric's Top-Picks
-
 #### Data Structure Optimizations
 
 Restructuring data received from an api call, to allow for O(1) constant look up times. The structure of the data received from the api call would require unnecessary nested loops for each look up of a given element.
@@ -184,11 +180,7 @@ Here is the data after being restructured:
     },
 ```
 
-
-
-### Kee's Top-Picks
-
-#### TITLE_OF_FEATURE1
+#### Modals
 
 A single Modal component that is responsible to return and render another react component.
 
@@ -196,7 +188,7 @@ We use the modal to display the splash page, loading screen, and sidebar.
 
 The loading animation is accomplished by using a 3rd party lirbary - React Loading.
 
-![Alt Text](https://gph.is/2RsahEv)
+![Alt Text](https://media.giphy.com/media/1rK8xK9ub6ZlxsTL7i/giphy.gif)
 
 <!-- ![Alt Text](make a gif and paste the link here, see examples above) -->
 
