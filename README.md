@@ -119,23 +119,69 @@ createPins() {
 
 ### Eric's Top-Picks
 
-#### TITLE_OF_FEATURE1
+#### Data Structure Optimizations
 
-Add a badass description here. Maybe just a sentence or two. Or perhaps three...
+Restructuring data received from an api call, to allow for O(1) constant look up times. The structure of the data received from the api call would require unnecessary nested loops for each look up of a given element.
 
 <!-- ![Alt Text](make a gif and paste the link here, see examples above) -->
-
+Data received from api call:
 ```js
-code in here
+{
+    "Continents": [
+        {
+            "Countries": [
+                {
+                    "CurrencyId": "AFN",
+                    "Regions": [],
+                    "Cities": [
+                        {
+                            "SingleAirportCity": true,
+                            "Airports": [
+                                {
+                                    "CityId": "BSTA",
+                                    "CountryId": "AF",
+                                    "Location": "64.366667, 31.55",
+                                    "Id": "BST",
+                                    "Name": "Bost"
+                                }
+                            ],
+                            "CountryId": "AF",
+                            "Location": "64.366667, 31.55",
+                            "IataCode": "BST",
+                            "Id": "BSTA",
+                            "Name": "Bost"
+                        },
+                        {
+                            "SingleAirportCity": true,
+                            "Airports": [
+                                {
+                                    "CityId": "CCNA",
+                                    "CountryId": "AF",
+                                    "Location": "65.266667, 34.533333",
+                                    "Id": "CCN",
+                                    "Name": "Chakcharan"
+                                }
+                            ],
+                            "CountryId": "AF",
+                            "Location": "65.266667, 34.533333",
+                            "IataCode": "CCN",
+                            "Id": "CCNA",
+                            "Name": "Chakcharan"
+                        },
 ```
-#### TITLE_OF_FEATURE2(optional)
-
-Add a badass description here. Maybe just a sentence or two. Or perhaps three...
-
-<!-- ![Alt Text](make a gif and paste the link here, see examples above) -->
-
+The information that is needed from this data is Location and Id which is deeply nested inside the structure.
+Because of this, an optimization was made to dramatically cut down look up times.
+Here is the data after being restructured:
 ```js
-code in here
+{
+    "BST": {
+        Id: "BST",
+        Location: "64.366667, 31.55"
+    },
+    "CCN": {
+        Id: "CCN",
+        Location: "65.266667, 34.533333"
+    },
 ```
 
 
