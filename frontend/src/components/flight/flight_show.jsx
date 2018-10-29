@@ -6,15 +6,12 @@ import $ from "jquery";
 
 
 class FlightShow extends React.Component {
-
-
     constructor(props) {
         super(props);
         this.state = {
             origin: "sfo",
             amount: null,
-            region: "",
-            country: "anywhere"
+            country: "us"
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -48,43 +45,24 @@ class FlightShow extends React.Component {
         
         window.loading = true;
         
-        this.props.getAllGeo().then(() =>
-            this.props.getAllQuotes({destination: this.state.country}).then(() => {
-                this.getOrigin(this.state.origin.toUpperCase());
-                this.getResults(parseInt(this.state.amount))
-            }).then(() => {
-                window.loading = false;
-                this.props.closeModal();
-            })
-        );
+        this.props.getAllQuotes({destination: this.state.country}).then(() => {
+            this.getOrigin(this.state.origin.toUpperCase());
+            this.getResults(parseInt(this.state.amount))
+        }).then(() => {
+            window.loading = false;
+            this.props.closeModal();
+        });
         
     }
 
     getOrigin(airport) {
-        // let place = {
-        //     value: this.getPlace(airport),
-        //     writable: true
-        // }
-
         let place = this.getPlace(airport)
         let geo = this.getGeo(place);
         this.props.setOrigin(Object.assign(place, { Location: geo }));
     }
 
     getGeo(place) {
-        for (let i = 0; i < this.props.geo.Continents.length; i++) {
-            for (let j = 0; j < this.props.geo.Continents[i].Countries.length; j++) {
-                if (this.props.geo.Continents[i].Countries[j].Name === place.CountryName) {
-                    for (let k = 0; k < this.props.geo.Continents[i].Countries[j].Cities.length; k++) {
-                        if (this.props.geo.Continents[i].Countries[j].Cities[k].IataCode === place.IataCode) {
-                            return this.props.geo.Continents[i].Countries[j].Cities[k].Location;
-                        }
-                    }
-                }
-            }
-        }
-        console.log('404: GEO NOT FOUND');
-        return "";
+        return this.props.geo[place.IataCode].Location;
     }
 
     getPlace(airport) {
@@ -100,7 +78,6 @@ class FlightShow extends React.Component {
     }
 
     getResults(budget) {
-        // console.log(budget);
         let results = {};
         for (let i = 0; i < this.props.quotes.length; i++) {
             if (this.props.quotes[i].OutboundLeg.OriginId === this.props.origin.PlaceId &&
@@ -126,6 +103,17 @@ class FlightShow extends React.Component {
         }
         this.props.setResults(results);
         return results;
+    }
+
+    handleDisable(origin){
+        switch (origin) {
+            case "oak":
+                return "disabled"
+            case "sjc":
+                return "disabled"
+            default:
+                return "";
+        }
     }
 
 
@@ -191,45 +179,41 @@ class FlightShow extends React.Component {
                       <option className="select-values" value="oak">
                         Oakland Airport OAK
                       </option>
-                      <option className="select-values" value="hwd">
-                        Hayward Executive Airport HWD
-                      </option>
                       <option className="select-values" value="jfk">
                         John F. Kennedy Airport JFK
                       </option>
                     </select>
                   </div>
-                 
 
                   <div className="form-region-title form-origin-title">
                     To:
-                    <div clasName="select-wrapper">
-                        <select className="origin form-region-input" name="country" onChange={this.handleChange} type="text">
-                        <option className="select-values" value="anywhere">
-                            Anywhere
-                        </option>
+                    <div>
+                      <select required="required" className="origin form-region-input" name="country" onChange={this.handleChange} type="text">
                         <option className="select-values" value="us">
                             United States
                         </option>
-                        <option className="select-values" value="ca">
-                            Canada
+                        <option disabled={this.handleDisable(this.state.origin === "sjc" ? "" : this.state.origin)} className="select-values" value="anywhere">
+                            Anywhere
+                        </option>
+                        <option disabled={this.handleDisable(this.state.origin)} className="select-values" value="ca">
+                          Canada
                         </option>
                         <option className="select-values" value="mx">
-                            Mexico
+                          Mexico
                         </option>
-                        <option className="select-values" value="jp">
-                            Japan
+                        <option disabled={this.handleDisable(this.state.origin)} className="select-values" value="jp">
+                          Japan
                         </option>
-                        <option className="select-values" value="de">
-                            Germany
+                        <option disabled={this.handleDisable(this.state.origin)} className="select-values" value="de">
+                          Germany
                         </option>
-                        </select>
+                      </select>
                     </div>
                   </div>
 
-                    <div className="form-budget-title">Budget:</div>
-                    <input className="form-budget-input" name="amount" onChange={this.handleChange} placeholder="eg. '200' " type="text" />
-            
+                  <div className="form-budget-title">Budget:</div>
+                  <input className="form-budget-input" name="amount" onChange={this.handleChange} placeholder="eg. '200' " type="text" />
+
                   <button id="submit-button" className="form-button button-input">
                     GO
                   </button>

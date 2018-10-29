@@ -5,23 +5,27 @@ export const RECEIVE_ALL_GEO = "RECEIVE_ALL_GEO";
 export const RECEIVE_ORIGIN = "RECEIVE_ORIGIN";
 export const RECEIVE_RESULTS = "RECEIVE_RESULTS";
 
-const receiveAllGeo = (resp) => ({
+const receiveAllGeo = (resp) => {
+  let geos = {};
+  for (let i = 0; i < resp.data.length; i++) {
+    geos[resp.data[i].IataCode] = resp.data[i];
+  }
+  return ({
   type: RECEIVE_ALL_GEO,
-  payload: resp.data,
-});
+  payload: geos,
+  });
+};
 
 const receiveAllQuotes = (resp) => ({
   type: RECEIVE_ALL_QUOTES,
   payload: resp.data,
 });
 
-// setOrigin;
 export const setOrigin = (origin) => ({
   type: RECEIVE_ORIGIN,
   origin,
 });
 
-// setResults;
 export const setResults = (results) => ({
   type: RECEIVE_RESULTS,
   results,
@@ -37,6 +41,6 @@ export const fetchAllQuotes = (filters) => (dispatch) => {
     origin: 'us', destination: 'us',
     outbound: 'anytime', inbound: 'anytime'}, filters);
 //  {country} /{currency} /{locale} /{origin} /{destination} /{outboundPartialDate} /{inboundPartialDate}
-    // console.log(filters);
+    
   return APIUtil.fetchAllQuotes(filters).then(data => dispatch(receiveAllQuotes(data)));
 };

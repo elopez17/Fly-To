@@ -29,23 +29,15 @@ class Pin extends Component {
             </div>;
     } else {
       return (
-                <div style={pinStyle}>
-                  <div style={pinStyleContent}>
-                    {this.props.airportName}
-                    <br/>
-                    {this.props.price}
-                  </div>
-                </div>
+            <div style={pinStyle}>
+              <div style={pinStyleContent}>
+                {this.props.airportName}
+                <br/>
+                {this.props.price}
+              </div>
+            </div>
              );
     }
-    
-    
-    
-    
-    
-    
-    
-    
   }
 }
 
