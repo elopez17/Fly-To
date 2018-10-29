@@ -188,7 +188,7 @@ Here is the data after being restructured:
 
 ### Kee's Top-Picks
 
-#### TITLE_OF_FEATURE1
+#### Modals
 
 A single Modal component that is responsible to return and render another react component.
 
@@ -196,7 +196,7 @@ We use the modal to display the splash page, loading screen, and sidebar.
 
 The loading animation is accomplished by using a 3rd party lirbary - React Loading.
 
-![Alt Text](https://gph.is/2RsahEv)
+![Alt Text](https://media.giphy.com/media/1rK8xK9ub6ZlxsTL7i/giphy.gif)
 
 <!-- ![Alt Text](make a gif and paste the link here, see examples above) -->
 
