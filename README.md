@@ -31,8 +31,6 @@ Filtering through different types of data. Sorting results in many forms.
 
 ## Favorite Key Features:
 
-### Matt's Top-Picks
-
 #### Holiday Themed Map
 
 Like searching the web in the dark (or light!)? We're not here to judge! In fact, we've given you four beautiful themes to customize the way you search the world of [Fly-To](http://fly-to.wiki). Using seperate JSON files, and some fresh baked code (this doesn't exist anywhere else on the internet), a button switched the style of a google-map-react component. Boom!
@@ -117,8 +115,6 @@ createPins() {
   }
 ```
 
-### Eric's Top-Picks
-
 #### Data Structure Optimizations
 
 Restructuring data received from an api call, to allow for O(1) constant look up times. The structure of the data received from the api call would require unnecessary nested loops for each look up of a given element.
@@ -183,10 +179,6 @@ Here is the data after being restructured:
         Location: "65.266667, 34.533333"
     },
 ```
-
-
-
-### Kee's Top-Picks
 
 #### Modals
 
