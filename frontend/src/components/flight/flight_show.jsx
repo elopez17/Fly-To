@@ -57,6 +57,8 @@ class FlightShow extends React.Component {
 
     getOrigin(airport) {
         let place = this.getPlace(airport)
+        console.log(place.IataCode);
+        debugger;
         let geo = this.getGeo(place);
         this.props.setOrigin(Object.assign(place, { Location: geo }));
     }
@@ -78,7 +80,6 @@ class FlightShow extends React.Component {
     }
 
     getResults(budget) {
-        // console.log(budget);
         let results = {};
         for (let i = 0; i < this.props.quotes.length; i++) {
             if (this.props.quotes[i].OutboundLeg.OriginId === this.props.origin.PlaceId &&
@@ -104,6 +105,17 @@ class FlightShow extends React.Component {
         }
         this.props.setResults(results);
         return results;
+    }
+
+    handleDisable(origin){
+        switch (origin) {
+            case "oak":
+                return "disabled"
+            case "sjc":
+                return "disabled"
+            default:
+                return "";
+        }
     }
 
 
@@ -169,45 +181,41 @@ class FlightShow extends React.Component {
                       <option className="select-values" value="oak">
                         Oakland Airport OAK
                       </option>
-                      <option className="select-values" value="hwd">
-                        Hayward Executive Airport HWD
-                      </option>
                       <option className="select-values" value="jfk">
                         John F. Kennedy Airport JFK
                       </option>
                     </select>
                   </div>
-                 
 
                   <div className="form-region-title form-origin-title">
                     To:
                     <div>
-                        <select className="origin form-region-input" name="country" onChange={this.handleChange} type="text">
-                        <option className="select-values" value="anywhere">
-                            Anywhere
+                      <select className="origin form-region-input" name="country" onChange={this.handleChange} type="text">
+                        <option disabled={this.handleDisable(this.state.origin === "sjc" ? "" : this.state.origin)} className="select-values" value="anywhere">
+                          Anywhere
                         </option>
                         <option className="select-values" value="us">
-                            United States
+                          United States
                         </option>
-                        <option className="select-values" value="ca">
-                            Canada
+                        <option disabled={this.handleDisable(this.state.origin)} className="select-values" value="ca">
+                          Canada
                         </option>
                         <option className="select-values" value="mx">
-                            Mexico
+                          Mexico
                         </option>
-                        <option className="select-values" value="jp">
-                            Japan
+                        <option disabled={this.handleDisable(this.state.origin)} className="select-values" value="jp">
+                          Japan
                         </option>
-                        <option className="select-values" value="de">
-                            Germany
+                        <option disabled={this.handleDisable(this.state.origin)} className="select-values" value="de">
+                          Germany
                         </option>
-                        </select>
+                      </select>
                     </div>
                   </div>
 
-                    <div className="form-budget-title">Budget:</div>
-                    <input className="form-budget-input" name="amount" onChange={this.handleChange} placeholder="eg. '200' " type="text" />
-            
+                  <div className="form-budget-title">Budget:</div>
+                  <input className="form-budget-input" name="amount" onChange={this.handleChange} placeholder="eg. '200' " type="text" />
+
                   <button id="submit-button" className="form-button button-input">
                     GO
                   </button>
