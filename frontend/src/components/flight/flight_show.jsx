@@ -57,8 +57,6 @@ class FlightShow extends React.Component {
 
     getOrigin(airport) {
         let place = this.getPlace(airport)
-        console.log(place.IataCode);
-        debugger;
         let geo = this.getGeo(place);
         this.props.setOrigin(Object.assign(place, { Location: geo }));
     }
