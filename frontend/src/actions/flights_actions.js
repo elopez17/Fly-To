@@ -8,12 +8,7 @@ export const RECEIVE_RESULTS = "RECEIVE_RESULTS";
 const receiveAllGeo = (resp) => {
   let geos = {};
   for (let i = 0; i < resp.data.length; i++) {
-    // if (geos[resp.data[i].IataCode]) {
-      geos[resp.data[i].IataCode] = resp.data[i];
-    // } else {
-      // geos[resp.data[i].IataCode] = {Location: ""};
-
-    // }
+    geos[resp.data[i].IataCode] = resp.data[i];
   }
   return ({
   type: RECEIVE_ALL_GEO,
@@ -26,13 +21,11 @@ const receiveAllQuotes = (resp) => ({
   payload: resp.data,
 });
 
-// setOrigin;
 export const setOrigin = (origin) => ({
   type: RECEIVE_ORIGIN,
   origin,
 });
 
-// setResults;
 export const setResults = (results) => ({
   type: RECEIVE_RESULTS,
   results,

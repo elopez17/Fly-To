@@ -6,8 +6,6 @@ const path = require("path");
 const port = process.env.PORT || 5000;
 const all = require('./routes/api/all');
 const bodyParser = require('body-parser');
-// const passport = require('passport');
-// require('./config/passport')(passport);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("frontend/build"));
@@ -17,24 +15,16 @@ if (process.env.NODE_ENV === "production") {
 }
 
 
-mongoose
-  .connect(dbURI, {useNewUrlParser: true})
-  .then(() => {})
-  // .then(() => console.log("Connected to MongoDB successfully"))
-  .catch(err => {});
-  // .catch(err => console.log(err));
+mongoose.connect(dbURI, {useNewUrlParser: true})
+  .then(() => {}).catch(err => {});
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// app.use(passport.initialize());
-
 app.use(express.static(__dirname + "/public/assets"));
-// app.use('/public', express.static('public'));
 app.use("/all", all);
 
 
 
 app.listen(port, () => {});
-// app.listen(port, () => console.log("ready"));
