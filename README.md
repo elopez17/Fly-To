@@ -4,14 +4,14 @@
 ![Alt Text](https://media.giphy.com/media/xjywsFbxJQLwpXB70n/giphy.gif)
 
 ## Description
-[Fly-To](https://fly-to.wiki) a budget-oriented flight search engine. You can view the world in four different styles (including a halloween theme). Use the Side Navigation Bar to input basic information to get beautiful results of flights around the world.
+[Fly-To](http://fly-to.wiki) a budget-oriented flight search engine. You can view the world in four different styles (including a halloween theme). Use the Side Navigation Bar to input basic information to get beautiful results of flights around the world.
 
 ### Live Version:
-[Fly-To](https://fly-to.wiki)
+[Fly-To](http://fly-to.wiki)
 
 ## Technologies
 
-[Fly-To](https://fly-to.wiki) is a MERN Stack Application featuring multiple apis with crossinteractions. CSS3 and JSON for styling. See more details below:
+[Fly-To](http://fly-to.wiki) is a MERN Stack Application featuring multiple apis with crossinteractions. CSS3 and JSON for styling. See more details below:
 
 * Backend  - MongoDB/Express
 * Frontend  - React/Node.js
@@ -35,7 +35,7 @@ Filtering through different types of data. Sorting results in many forms.
 
 #### Holiday Themed Map
 
-Like searching the web in the dark (or light!)? We're not here to judge! In fact, we've given you four beautiful themes to customize the way you search the world of [Fly-To](https://fly-to.wiki). Using seperate JSON files, and some fresh baked code (this doesn't exist anywhere else on the internet), a button switched the style of a google-map-react component. Boom!
+Like searching the web in the dark (or light!)? We're not here to judge! In fact, we've given you four beautiful themes to customize the way you search the world of [Fly-To](http://fly-to.wiki). Using seperate JSON files, and some fresh baked code (this doesn't exist anywhere else on the internet), a button switched the style of a google-map-react component. Boom!
 
 ![Alt Text](https://media.giphy.com/media/4Ngoj4WmAZcEjgpFgc/giphy.gif)
 
