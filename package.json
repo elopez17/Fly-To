@@ -59,6 +59,7 @@
     "validator": "^10.8.0"
   },
   "devDependencies": {
+    "jasmine": "^3.4.0",
     "nodemon": "^1.18.4"
   }
 }
